@@ -20,17 +20,19 @@ public class PlayerController : MonoBehaviour
 
     private int isWalkingHash;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         inputManager = FindObjectOfType<InputManager>();
         characterController = GetComponent<CharacterController>();
         playerAnimator = GetComponentInChildren<Animator>();
+    }
 
+    void Start()
+    {
         isWalkingHash = Animator.StringToHash("isWalking");
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         HandleMoveInput();
