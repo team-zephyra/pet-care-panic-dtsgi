@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
@@ -6,35 +7,29 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    public event EventHandler OnInteractAction;
+
     private PlayerInput playerInput;
     private PlayerInput.GameplayActions gameplayActions;
-
-    private Vector2 moveInput;
     
     void Awake()
     {
         playerInput = new PlayerInput();
         gameplayActions = playerInput.Gameplay;
 
-        gameplayActions.Move.started += GetMoveInput;
-        gameplayActions.Move.performed += GetMoveInput;
-        gameplayActions.Move.canceled += GetMoveInput;
+        gameplayActions.Interact.performed += OnInteractInputPerformed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnInteractInputPerformed(InputAction.CallbackContext obj)
     {
-        
-    }
-
-    private void GetMoveInput(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
+        OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMoveInput()
     {
-        return moveInput;
+        Vector2 moveInputVector = gameplayActions.Move.ReadValue<Vector2>();
+
+        return moveInputVector;
     }
 
     void OnEnable()

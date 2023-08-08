@@ -1,20 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
+
+    public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    public class OnSelectedCounterChangedEventArgs : EventArgs
+    {
+        public ClearCounter selectedCounter;
+    }
+
     private InputManager inputManager;
     private CharacterController characterController;
     private Animator playerAnimator;
+    [SerializeField] private LayerMask counterLayerMask;
 
-    private Vector2 moveInput;
-    private Vector3 moveDirection;
+    private Vector3 lastInteractDirection;
 
-    private float moveSpeed = 5f;
-    private float gravity = -9.8f;
-    private float turnSmoothVelocity;
-    private float turnSmoothTime = 0.1f;
+    private ClearCounter selectedCounter;
+
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 10f;
 
     private bool isMovePressed;
 
@@ -22,7 +31,25 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = FindObjectOfType<InputManager>();
+        if (Instance != null)
+        {
+            Debug.LogError("There is already an instance of PlayerController.");
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        if (inputManager == null)
+        {
+            inputManager = FindObjectOfType<InputManager>();
+        }
+
+        if (inputManager == null)
+        {
+            Debug.Log("PlayerController script requires InputManager in order to work");
+        }
+       
         characterController = GetComponent<CharacterController>();
         playerAnimator = GetComponentInChildren<Animator>();
     }
@@ -30,33 +57,115 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         isWalkingHash = Animator.StringToHash("isWalking");
+
+        inputManager.OnInteractAction += HandleInteractInput;
     }
 
+    private void HandleInteractInput(object sender, System.EventArgs e)
+    {
+        if (selectedCounter != null)
+        {
+            selectedCounter.Interact();
+        }
+    }
 
     void Update()
     {
         HandleMoveInput();
-        HandleGravity();
+        HandleInteraction();
         HandleAnimation();
     }
 
     void HandleMoveInput()
     {
-        moveInput = inputManager.GetMoveInput();
-        moveDirection.x = moveInput.x * moveSpeed;
-        moveDirection.z = moveInput.y * moveSpeed;
+        Vector2 moveInput = inputManager.GetMoveInput();
+        Vector3 moveDirection;
 
         isMovePressed = moveInput.x != 0 || moveInput.y != 0;
 
-        // Calculate rotation angle based on input direction
-        if (moveInput != Vector2.zero)
+        moveDirection = new Vector3(moveInput.x, 0f, moveInput.y);
+
+        float playerRadius = .4f;
+        float playerHeight = 1.5f;
+        float moveDistance = moveSpeed * Time.deltaTime;
+
+        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirection, moveDistance);
+
+        if (!canMove)
         {
-            float targetAngle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            // Cannot move towards moveDirection, therefore:
+
+            // Attempt to move only on moveDirection.x
+            Vector3 moveDirectionX = new Vector3(moveDirection.x, 0f, 0f).normalized;
+            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirectionX, moveDistance);
+
+            if (canMove)
+            {
+                // Only move on the X
+                moveDirection = moveDirectionX;
+            }
+            else
+            {
+                // Cannot only move on the X, therefore:
+
+                // Attempt to move only on moveDirection.z
+                Vector3 moveDirectionZ = new Vector3(0f, 0f, moveDirection.z).normalized;
+                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirectionZ, moveDistance);
+
+                if (canMove)
+                {
+                    // Only move on the Z
+                    moveDirection = moveDirectionZ;
+                }
+                else
+                {
+                    // Cannot move in any direction
+                }
+            }
         }
 
-        characterController.Move(moveDirection * Time.deltaTime);
+        if (canMove)
+        {
+            transform.position += moveDirection * moveDistance;
+        }
+
+        transform.forward = Vector3.Slerp(transform.forward, moveDirection, rotationSpeed * Time.deltaTime);
+    }
+
+    void HandleInteraction()
+    {
+        Vector2 moveInput = inputManager.GetMoveInput(); ;
+        Vector3 moveDirection = new Vector3(moveInput.x, 0f, moveInput.y);
+
+        RaycastHit hitInfo;
+
+        float maxDistance = 2f;
+
+        if (moveDirection != Vector3.zero)
+        {
+            lastInteractDirection = moveDirection;
+        }
+
+        if (Physics.Raycast(transform.position, lastInteractDirection, out hitInfo, maxDistance, counterLayerMask))
+        {
+            if (hitInfo.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                // hitInfo has ClearCounter class
+                if (clearCounter != selectedCounter)
+                {
+                    SetSelectedCounter(clearCounter);
+                    Debug.Log(clearCounter.name);
+                }
+                else
+                {
+                    SetSelectedCounter(null);
+                }
+            }
+            else
+            {
+                SetSelectedCounter(null);
+            }
+        }
     }
 
     void HandleAnimation()
@@ -73,14 +182,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void HandleGravity()
+    private void SetSelectedCounter(ClearCounter selectedCounter)
     {
-        if (!characterController.isGrounded)
+        this.selectedCounter = selectedCounter;
+
+        OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
         {
-            moveDirection.y = gravity;
-        } else
-        {
-            moveDirection.y = -.25f;
-        }
+            selectedCounter = selectedCounter
+        });
     }
 }
