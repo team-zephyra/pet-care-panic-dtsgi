@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
         Vector2 moveInput = inputManager.GetMoveInput(); ;
         Vector3 moveDirection = new Vector3(moveInput.x, 0f, moveInput.y);
 
-        RaycastHit hitInfo;
+        RaycastHit raycastHit;
 
         float maxDistance = 2f;
 
@@ -146,25 +146,21 @@ public class PlayerController : MonoBehaviour
             lastInteractDirection = moveDirection;
         }
 
-        if (Physics.Raycast(transform.position, lastInteractDirection, out hitInfo, maxDistance, counterLayerMask))
+        if (Physics.Raycast(transform.position, lastInteractDirection, out raycastHit, maxDistance, counterLayerMask))
         {
-            if (hitInfo.transform.TryGetComponent(out ClearCounter clearCounter))
+            if (raycastHit.transform.TryGetComponent(out ClearCounter baseCounter))
             {
-                // hitInfo has ClearCounter class
-                if (clearCounter != selectedCounter)
+                if (baseCounter != selectedCounter)
                 {
-                    SetSelectedCounter(clearCounter);
-                    Debug.Log(clearCounter.name);
+                    SetSelectedCounter(baseCounter);
                 }
-                else
-                {
-                    SetSelectedCounter(null);
-                }
-            }
-            else
+            } else
             {
                 SetSelectedCounter(null);
             }
+        } else
+        {
+            SetSelectedCounter(null);
         }
     }
 
