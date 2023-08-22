@@ -3,20 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteraction : MonoBehaviour, IPetShopObjectParent
 {
     public static PlayerInteraction Instance { get; private set; }
 
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
+    
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
     private InputManager inputManager;
     [SerializeField] private LayerMask counterLayerMask;
-    private ClearCounter selectedCounter;
+    private BaseCounter selectedCounter;
     private Vector3 lastInteractDirection;
+
+    [SerializeField] private Transform playerObjectHoldPosition;
+    private PetShopObject petShopObject;
 
     void Awake()
     {
@@ -59,7 +63,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(transform.position, lastInteractDirection, out raycastHit, maxDistance, counterLayerMask))
         {
-            if (raycastHit.transform.TryGetComponent(out ClearCounter baseCounter))
+            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
                 if (baseCounter != selectedCounter)
                 {
@@ -81,11 +85,11 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (selectedCounter != null)
         {
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
         }
     }
 
-    private void SetSelectedCounter(ClearCounter selectedCounter)
+    private void SetSelectedCounter(BaseCounter selectedCounter)
     {
         this.selectedCounter = selectedCounter;
 
@@ -93,5 +97,30 @@ public class PlayerInteraction : MonoBehaviour
         {
             selectedCounter = selectedCounter
         });
+    }
+
+    public Transform GetPetShopObjectFollowTransform()
+    {
+        return playerObjectHoldPosition;
+    }
+
+    public void SetPetShopObject(PetShopObject petShopObject)
+    {
+        this.petShopObject = petShopObject;
+    }
+
+    public PetShopObject GetPetShopObject()
+    {
+        return petShopObject;
+    }
+
+    public void ClearPetShopObject()
+    {
+        petShopObject = null;
+    }
+
+    public bool HasPetShopObject()
+    {
+        return petShopObject != null;
     }
 }
