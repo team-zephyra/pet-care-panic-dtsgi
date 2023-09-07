@@ -37,4 +37,9 @@ public class PetShopObject : MonoBehaviour
     {
         return petShopObjectParent;
     }
+
+    public void DestroySelf()
+    {
+        
+    }
 }
