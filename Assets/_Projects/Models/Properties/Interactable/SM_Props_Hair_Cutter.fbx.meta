@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d1184a1c63f5fdf4f95648c4f9f93206
+guid: 1a47e467e1b801b44affa927f2950e5a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,23 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: mBuilding
-    second: {fileID: 2100000, guid: c9e1738cc0a95cc45a2ca78b0b994edd, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mGlass
-    second: {fileID: 2100000, guid: 900065b53d116c24d8d4600949b2174b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: mHandle
-    second: {fileID: 2100000, guid: 9553a6b10d541674ab2f618350c23179, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Building Texture
-    second: {fileID: 2800000, guid: 28633e759f98abd44ba8098cbc760f04, type: 3}
+      name: M_Props_Texture_Pack
+    second: {fileID: 2100000, guid: 7a4aabbe2639e1548b577219675f1647, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
