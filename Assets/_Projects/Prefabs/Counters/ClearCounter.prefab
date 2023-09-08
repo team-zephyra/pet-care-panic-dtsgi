@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterSurfacePosition: {fileID: 6940763333020564349}
+  petShopObjectSO: {fileID: 0}
 --- !u!4 &4006594827633913789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3020629436317366247, guid: 2244723b8354831409a785741406e6f5, type: 3}

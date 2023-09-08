@@ -11,12 +11,12 @@ public class PlayerInteraction : MonoBehaviour, IPetShopObjectParent
     
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
-        public BaseCounter selectedCounter;
+        public Counter selectedCounter;
     }
 
     private InputManager inputManager;
     [SerializeField] private LayerMask counterLayerMask;
-    private BaseCounter selectedCounter;
+    private Counter selectedCounter;
     private Vector3 lastInteractDirection;
 
     [SerializeField] private Transform playerObjectHoldPosition;
@@ -63,7 +63,7 @@ public class PlayerInteraction : MonoBehaviour, IPetShopObjectParent
 
         if (Physics.Raycast(transform.position, lastInteractDirection, out raycastHit, maxDistance, counterLayerMask))
         {
-            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
+            if (raycastHit.transform.TryGetComponent(out Counter baseCounter))
             {
                 if (baseCounter != selectedCounter)
                 {
@@ -89,7 +89,7 @@ public class PlayerInteraction : MonoBehaviour, IPetShopObjectParent
         }
     }
 
-    private void SetSelectedCounter(BaseCounter selectedCounter)
+    private void SetSelectedCounter(Counter selectedCounter)
     {
         this.selectedCounter = selectedCounter;
 
