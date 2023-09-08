@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private InputManager inputManager;
     private CharacterController characterController;
 
-    private float moveSpeed = 5f;
+    [SerializeField]private float moveSpeed = 5f;
     private float turnSmoothVelocity;
     private float turnSmoothTime = .1f;
 
