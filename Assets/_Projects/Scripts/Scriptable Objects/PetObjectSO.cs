@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class PetShopObjectSO : ScriptableObject
+public class PetObjectSO : ScriptableObject
 {
     public Transform prefab;
     public string objectName;

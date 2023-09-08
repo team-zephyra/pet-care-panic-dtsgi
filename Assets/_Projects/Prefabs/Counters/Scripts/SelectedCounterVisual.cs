@@ -5,11 +5,11 @@ using UnityEngine;
 public class SelectedCounterVisual : MonoBehaviour
 {
     [SerializeField] private Counter baseCounter;
+    
     [SerializeField] private GameObject[] selectedCounterVisuals;
 
     private bool isInitialized = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         Initialize();
@@ -41,6 +41,12 @@ public class SelectedCounterVisual : MonoBehaviour
         else
         {
             Debug.LogWarning("PlayerInteraction.Instance is null. Make sure PlayerInteraction is properly set up.");
+        }
+
+        // Check base counter
+        if (baseCounter == null)
+        {
+            baseCounter = GetComponentInParent<Counter>();
         }
     }
 

@@ -301,6 +301,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9089299552694870823, guid: 2244723b8354831409a785741406e6f5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2244723b8354831409a785741406e6f5, type: 3}
 --- !u!1 &4006594827633913730 stripped
@@ -321,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterSurfacePosition: {fileID: 6940763333020564349}
-  petShopObjectSO: {fileID: 0}
+  petObjectSO: {fileID: 0}
 --- !u!4 &4006594827633913789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3020629436317366247, guid: 2244723b8354831409a785741406e6f5, type: 3}

@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCounter : Counter
+public class Counter_Base : Counter
 {
-    [SerializeField] private PetShopObjectSO petShopObjectSO;
+    [SerializeField] private PetObjectSO petObjectSO;
 
     public override void Interact(PlayerInteraction player)
     {
-        if (!HasPetShopObject())
+        if (!HasPetObject())
         {
-            // There is no PetShopObject
-            if (player.HasPetShopObject())
+            // There is no PetObject
+            if (player.HasPetObject())
             {
                 // Player is carrying something
-                player.GetPetShopObject().SetPetShopObjectParent(this);
+                player.GetPetObject().SetPetObjectParent(this);
             } else
             {
                 // Player is not carrying anything
@@ -22,15 +22,15 @@ public class ClearCounter : Counter
         }
         else
         {
-            // There is a PetShopObject
-            if (player.HasPetShopObject())
+            // There is a PetObject
+            if (player.HasPetObject())
             {
                 // Player is carrying something
             }
             else
             {
                 // Player is not carrying anything
-                GetPetShopObject().SetPetShopObjectParent(player);
+                GetPetObject().SetPetObjectParent(player);
             }
         }
     }
