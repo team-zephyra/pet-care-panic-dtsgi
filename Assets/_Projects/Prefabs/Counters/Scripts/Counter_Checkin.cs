@@ -27,6 +27,7 @@ public class Counter_Checkin : Counter
             // Can put "something" to Counter
             player.GetPetObject().SetPetObjectParent(this);
         }
+
         //Debug Only
         /*
         else if (!HasPetObject() && !player.HasPetObject())
