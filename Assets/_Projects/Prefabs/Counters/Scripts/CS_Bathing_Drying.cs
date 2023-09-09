@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CounterAudio))]
-public class CS_Bathing_Drying : Counter, ICounterServices
+public class CS_Bathing_Bath : Counter, ICounterServices
 {
     [SerializeField] private PetObjectSO petObjectSO;
 
