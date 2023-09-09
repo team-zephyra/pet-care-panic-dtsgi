@@ -14,6 +14,7 @@ public class Counter_Checkout : Counter
             // Can put "something" to Counter
             player.GetPetObject().SetPetObjectParent(this);
 
+            CounterSFX.PlayPut();
             // Checkout Pet and completing order
             StartCoroutine(CheckoutPet());
         }
@@ -26,11 +27,14 @@ public class Counter_Checkout : Counter
 
     public IEnumerator CheckoutPet()
     {
-        // Do Checkout Logic
-        
-
         // Playing Pet Animations
-        yield return new WaitForSeconds(1f);
+
+        // Do Checkout Logic
+        yield return new WaitForSeconds(0.5f);
+        CounterSFX.PlaySFX();
+
+        
+        yield return new WaitForSeconds(0.5f);
         GetPetObject().CheckoutPet();
     }
 }

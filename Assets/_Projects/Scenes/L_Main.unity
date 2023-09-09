@@ -2459,6 +2459,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1711316039}
     m_Modifications:
+    - target: {fileID: 335443540123059853, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: sfxClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 157ac0f6adf55974d8362b971cee0e04, type: 3}
     - target: {fileID: 3513045364591274777, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
       propertyPath: m_Name
       value: Counter_Checkin

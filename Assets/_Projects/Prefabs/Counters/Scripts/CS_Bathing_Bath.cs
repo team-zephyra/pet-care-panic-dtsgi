@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(CounterAudio))]
-public class CS_Bathing_Drying : Counter, ICounterServices
+
+public class CS_Bathing_Bath : Counter, ICounterServices
 {
     [SerializeField] private PetObjectSO petObjectSO;
 
@@ -14,20 +14,17 @@ public class CS_Bathing_Drying : Counter, ICounterServices
     [SerializeField]private Transform VFX;
     private bool canTakePet = true;
 
-    private void Start()
-    {
-        //ServiceStarting();
-    }
-
     public override void Interact(PlayerInteraction _player)
     {
         if (!HasPetObject())
         {
+           CounterSFX.PlayPut();
            PetRegister(_player);
         }
         
         if(canTakePet)
         {
+            CounterSFX.PlayTake();
             PetUnregister(_player);
         }
     }
@@ -46,12 +43,15 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         StartCoroutine(ServiceOnProgress());
 
         // Do Start VFX here
+        CounterSFX.PlaySFX();
         VFX.gameObject.SetActive(true);
     }
 
     public IEnumerator ServiceOnProgress()
     {
         // Playing Pet Animations
+
+
 
         // Do Services Logic
         float normalizeTime = 0;
