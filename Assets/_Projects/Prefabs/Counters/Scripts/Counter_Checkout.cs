@@ -6,13 +6,13 @@ public class Counter_Checkout : Counter
 {
     [SerializeField] private PetObjectSO petObjectSO;
 
-    public override void Interact(PlayerInteraction player)
+    public override void Interact(PlayerInteraction _player)
     {
         
-        if (!HasPetObject() && player.HasPetObject())
+        if (!HasPetObject() && _player.HasPetObject())
         {
             // Can put "something" to Counter
-            player.GetPetObject().SetPetObjectParent(this);
+            _player.GetPetObject().SetPetObjectParent(this);
 
             CounterSFX.PlayPut();
             // Checkout Pet and completing order

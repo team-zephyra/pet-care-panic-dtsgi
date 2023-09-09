@@ -21,13 +21,13 @@ public class CS_Bathing_Drying : Counter, ICounterServices
 
     public override void Interact(PlayerInteraction _player)
     {
-        if (!HasPetObject())
+        if (!HasPetObject() && _player.HasPetObject())
         {
            CounterSFX.PlayPut();
            PetRegister(_player);
         }
         
-        if(canTakePet)
+        if(HasPetObject() && canTakePet)
         {
             CounterSFX.PlayTake();
             PetUnregister(_player);

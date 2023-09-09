@@ -12,21 +12,21 @@ public class Counter_Checkin : Counter
         CheckInPet(petObjectSO);
     }
 
-    public override void Interact(PlayerInteraction player)
+    public override void Interact(PlayerInteraction _player)
     {
         
-        if (HasPetObject() && !player.HasPetObject())
+        if (HasPetObject() && !_player.HasPetObject())
         {
             // Counter have a PetObject and Player is not carrying anything
             // Give PetShopObject to Player
-            GetPetObject().SetPetObjectParent(player);
+            GetPetObject().SetPetObjectParent(_player);
             CounterSFX.PlayTake();
         }
-        else if (!HasPetObject() && player.HasPetObject())
+        else if (!HasPetObject() && _player.HasPetObject())
         {
             // Counter does not have a PetObject and Player is carrying something
             // Can put "something" to Counter
-            player.GetPetObject().SetPetObjectParent(this);
+            _player.GetPetObject().SetPetObjectParent(this);
             CounterSFX.PlayPut();
         }
     }
