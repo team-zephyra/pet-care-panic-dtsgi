@@ -1,39 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Counter : MonoBehaviour, IPetShopObjectParent
+public class Counter : MonoBehaviour, IPetObjectParent
 {
     [SerializeField] private Transform counterSurfacePosition;
-    private PetShopObject petShopObject;
+    private Pet petObject;
 
     public virtual void Interact(PlayerInteraction playerInteraction)
     {
         // Child classes should override this method to implement their own logic
     }
 
-    public Transform GetPetShopObjectFollowTransform()
+    public Transform GetSurfacePosition()
     {
         return counterSurfacePosition;
     }
 
-    public void SetPetShopObject(PetShopObject petShopObject)
+    public void SetPetObject(Pet _petObject)
     {
-        this.petShopObject = petShopObject;
+        this.petObject = _petObject;
     }
 
-    public PetShopObject GetPetShopObject()
+    public Pet GetPetObject()
     {
-        return petShopObject;
+        return petObject;
     }
 
-    public void ClearPetShopObject()
+    public void ClearPetObject()
     {
-        petShopObject = null;
+        petObject = null;
     }
 
-    public bool HasPetShopObject()
+    public bool HasPetObject()
     {
-        return petShopObject != null;
+        return petObject != null;
     }
 }

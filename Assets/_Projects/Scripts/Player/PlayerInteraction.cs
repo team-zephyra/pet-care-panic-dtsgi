@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour, IPetShopObjectParent
+public class PlayerInteraction : MonoBehaviour, IPetObjectParent
 {
     public static PlayerInteraction Instance { get; private set; }
 
@@ -20,7 +20,7 @@ public class PlayerInteraction : MonoBehaviour, IPetShopObjectParent
     private Vector3 lastInteractDirection;
 
     [SerializeField] private Transform playerObjectHoldPosition;
-    private PetShopObject petShopObject;
+    private Pet petObject;
 
     void Awake()
     {
@@ -34,19 +34,18 @@ public class PlayerInteraction : MonoBehaviour, IPetShopObjectParent
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         inputManager = FindObjectOfType<InputManager>();
         inputManager.OnInteractAction += HandleInteractInput;
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleInteraction();
     }
 
+#region Counter Handle
     void HandleInteraction()
     {
         Vector2 moveInput = inputManager.GetMoveInput(); ;
@@ -98,29 +97,33 @@ public class PlayerInteraction : MonoBehaviour, IPetShopObjectParent
             selectedCounter = selectedCounter
         });
     }
+#endregion
+#region Pet Handle
 
-    public Transform GetPetShopObjectFollowTransform()
+    public Transform GetSurfacePosition()
     {
         return playerObjectHoldPosition;
     }
 
-    public void SetPetShopObject(PetShopObject petShopObject)
+    public void SetPetObject(Pet _petShopObject)
     {
-        this.petShopObject = petShopObject;
+        this.petObject = _petShopObject;
     }
 
-    public PetShopObject GetPetShopObject()
+    public Pet GetPetObject()
     {
-        return petShopObject;
+        return petObject;
     }
 
-    public void ClearPetShopObject()
+    public void ClearPetObject()
     {
-        petShopObject = null;
+        petObject = null;
     }
 
-    public bool HasPetShopObject()
+    public bool HasPetObject()
     {
-        return petShopObject != null;
+        return petObject != null;
     }
+
+#endregion
 }
