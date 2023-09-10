@@ -4,6 +4,7 @@ using UnityEngine;
 public class Counter : MonoBehaviour, IPetObjectParent
 {
     [SerializeField] private Transform counterSurfacePosition;
+    [SerializeField] private BubbleEffect bubbleEffect;
     private Pet petObject;
     private CounterAudio sfx;
 
@@ -31,4 +32,8 @@ public class Counter : MonoBehaviour, IPetObjectParent
     public bool HasPetObject() { return petObject != null; }
 
     protected CounterAudio CounterSFX { get { return sfx; } }
+
+    protected void ActiveBubbleEffect(BubbleType _type)  { bubbleEffect.Enable(_type); }
+
+    protected  void DeactiveBubbleEffect() { bubbleEffect.Disable(); }
 }
