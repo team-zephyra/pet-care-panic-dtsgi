@@ -15,6 +15,7 @@ public class Counter_Base : Counter
             {
                 // Player is carrying something
                 _player.GetPetObject().SetPetObjectParent(this);
+                CounterSFX.PlayOneShot(SfxType.Put);
             }
         }
         else
@@ -28,6 +29,7 @@ public class Counter_Base : Counter
             {
                 // Player is not carrying anything
                 GetPetObject().SetPetObjectParent(_player);
+                CounterSFX.PlayOneShot(SfxType.Take);
             }
         }
     }

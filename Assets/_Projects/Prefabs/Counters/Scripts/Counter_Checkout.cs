@@ -14,7 +14,7 @@ public class Counter_Checkout : Counter
             // Can put "something" to Counter
             _player.GetPetObject().SetPetObjectParent(this);
 
-            CounterSFX.PlayPut();
+            CounterSFX.PlayOneShot(SfxType.Put);
             // Checkout Pet and completing order
             StartCoroutine(CheckoutPet());
         }
