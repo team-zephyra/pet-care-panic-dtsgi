@@ -4,7 +4,7 @@ using UnityEngine;
 public class Counter : MonoBehaviour, IPetObjectParent
 {
     [SerializeField] private Transform counterSurfacePosition;
-    [SerializeField] private Pet petObject;
+    private Pet petObject;
     private CounterAudio sfx;
 
     private void Awake()
