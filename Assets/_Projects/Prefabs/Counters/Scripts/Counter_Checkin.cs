@@ -20,14 +20,14 @@ public class Counter_Checkin : Counter
             // Counter have a PetObject and Player is not carrying anything
             // Give PetShopObject to Player
             GetPetObject().SetPetObjectParent(_player);
-            CounterSFX.PlayTake();
+            CounterSFX.PlayOneShot(SfxType.Take);
         }
         else if (!HasPetObject() && _player.HasPetObject())
         {
             // Counter does not have a PetObject and Player is carrying something
             // Can put "something" to Counter
             _player.GetPetObject().SetPetObjectParent(this);
-            CounterSFX.PlayPut();
+            CounterSFX.PlayOneShot(SfxType.Put);
         }
     }
 

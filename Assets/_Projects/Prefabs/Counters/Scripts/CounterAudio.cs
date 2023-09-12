@@ -10,6 +10,7 @@ public class CounterAudio : MonoBehaviour
     [SerializeField]private AudioClip sfxProgressClip;
     [SerializeField]private AudioClip sfxTake;
     [SerializeField]private AudioClip sfxPut;
+    [SerializeField]private AudioClip sfxBubble;
 
     private void Start()
     {
@@ -25,13 +26,22 @@ public class CounterAudio : MonoBehaviour
         audioSource.Play();
     }
 
-    public void PlayTake()
+    public void PlayOneShot(SfxType type)
     {
-        audioSource.PlayOneShot(sfxTake);
+        switch(type)
+        {
+            case SfxType.Put: audioSource.PlayOneShot(sfxPut); break;
+            case SfxType.Take: audioSource.PlayOneShot(sfxTake); break;
+            case SfxType.Bubble: audioSource.PlayOneShot(sfxBubble); break;
+            case SfxType.Progress: audioSource.PlayOneShot(sfxProgressClip); break;
+            default: audioSource.PlayOneShot(sfxPut); break;
+        }
     }
+}
 
-    public void PlayPut()
-    {
-        audioSource.PlayOneShot(sfxPut);
-    }
+public enum SfxType{
+    Progress,
+    Take,
+    Put,
+    Bubble
 }

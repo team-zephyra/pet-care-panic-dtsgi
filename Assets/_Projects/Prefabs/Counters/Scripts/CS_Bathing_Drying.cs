@@ -23,13 +23,15 @@ public class CS_Bathing_Drying : Counter, ICounterServices
     {
         if (!HasPetObject() && _player.HasPetObject())
         {
-           CounterSFX.PlayPut();
-           PetRegister(_player);
+            CounterSFX.PlayOneShot(SfxType.Put);
+            ActiveBubbleEffect(BubbleType.counter);
+            PetRegister(_player);
         }
         
         if(HasPetObject() && canTakePet)
         {
-            CounterSFX.PlayTake();
+            CounterSFX.PlayOneShot(SfxType.Take);
+            DeactiveBubbleEffect();
             PetUnregister(_player);
         }
     }
@@ -39,6 +41,8 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         canTakePet = true;
 
         // Do End VFX here
+        ActiveBubbleEffect(BubbleType.finish);
+        CounterSFX.PlayOneShot(SfxType.Bubble);
         VFX.gameObject.SetActive(false);
     }
 
