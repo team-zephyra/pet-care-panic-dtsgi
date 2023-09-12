@@ -703,7 +703,6 @@ Transform:
   - {fileID: 1016094681}
   - {fileID: 852018975}
   - {fileID: 1619093229}
-  - {fileID: 1355547588}
   - {fileID: 1770693014}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -790,8 +789,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0812895, y: 0.908828, z: 0.05243537}
-  m_Center: {x: 0.006268997, y: 0.1241589, z: -0.0012774385}
+  m_Size: {x: 1.0812895, y: 0.908828, z: 0.053557523}
+  m_Center: {x: 0.006268997, y: 0.1241589, z: -0.00071636675}
 --- !u!1001 &955386779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -899,6 +898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d3bc36c36a92447902173dd24daa49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orderManager: {fileID: 0}
+  levelPref: []
 --- !u!1001 &980043934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1344,71 +1345,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310527739}
   m_CullTransparentMesh: 1
---- !u!1 &1355547587
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1355547588}
-  - component: {fileID: 1355547589}
-  m_Layer: 0
-  m_Name: ReflectionProbe (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1355547588
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355547587}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -4.5, y: 4, z: -6.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 853897769}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!215 &1355547589
-ReflectionProbe:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1355547587}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Type: 0
-  m_Mode: 0
-  m_RefreshMode: 1
-  m_TimeSlicingMode: 0
-  m_Resolution: 128
-  m_UpdateFrequency: 0
-  m_BoxSize: {x: 10, y: 10, z: 10}
-  m_BoxOffset: {x: 0, y: 0, z: 0}
-  m_NearClip: 0.3
-  m_FarClip: 1000
-  m_ShadowDistance: 100
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.4666667, g: 0.7372549, b: 0.77647066, a: 0}
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 295
-  m_IntensityMultiplier: 1
-  m_BlendDistance: 1
-  m_HDR: 1
-  m_BoxProjection: 0
-  m_RenderDynamicObjects: 0
-  m_UseOcclusionCulling: 1
-  m_Importance: 1
-  m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &1380078653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,7 +1706,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 853897769}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1770693015
 MonoBehaviour:
