@@ -40,5 +40,16 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetBool(isWalkingHash, false);
         }
+
+        PlayerInteraction player = GetComponent<PlayerInteraction>();
+
+        if (player.HasPetObject())
+        {
+            animator.SetLayerWeight(1, 1);
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 0);
+        }
     }
 }
