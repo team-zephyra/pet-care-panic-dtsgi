@@ -9,6 +9,8 @@ public class PlayerAnimation : MonoBehaviour
 
     // Parameters to Optimize Animation
     private int isWalkingHash;
+    private int GetPetHash;
+    private int HasPetObjectHash;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,8 @@ public class PlayerAnimation : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         isWalkingHash = Animator.StringToHash("isWalking");
+        GetPetHash = Animator.StringToHash("GetPet");
+        HasPetObjectHash = Animator.StringToHash("HasPetObject");
     }
 
     // Update is called once per frame
@@ -40,5 +44,21 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetBool(isWalkingHash, false);
         }
+
+        PlayerInteraction player = GetComponent<PlayerInteraction>();
+
+        if (player.HasPetObject())
+        {
+            animator.SetLayerWeight(1, 1);
+        }
+        else
+        {
+            animator.SetLayerWeight(1, 0);
+        }
+    }
+
+    public void TriggerGetPetAnimation()
+    {
+        animator.SetTrigger(GetPetHash);
     }
 }

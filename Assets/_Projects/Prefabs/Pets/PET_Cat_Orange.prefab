@@ -7,9 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3029452985427596439, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: d46a535e9aa87d8408890dcc82dfe645, type: 2}
+    - target: {fileID: -3029452985427596439, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f6295ebae51677b4282653b091400585, type: 2}
     - target: {fileID: 5082024370897306966, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: m_Name
-      value: PET_Cat_
+      value: PET_Cat_Orange
       objectReference: {fileID: 0}
     - target: {fileID: 5786499127040594711, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: petTextureColor
