@@ -14,11 +14,13 @@ public class Counter_Checkin : Counter
 
     public override void Interact(PlayerInteraction _player)
     {
-        
         if (HasPetObject() && !_player.HasPetObject())
         {
             // Counter have a PetObject and Player is not carrying anything
             // Give PetShopObject to Player
+            Transform petObjectTransform = this.petObjectSO.prefab;
+            petObjectTransform.GetComponent<Pet>().isOnCheckInCounter = false;
+
             GetPetObject().SetPetObjectParent(_player);
             CounterSFX.PlayOneShot(SfxType.Take);
         }
@@ -34,11 +36,12 @@ public class Counter_Checkin : Counter
     public void CheckInPet(PetObjectSO _petObjectSO)
     {
         // Can spawn PetObject
-
         if (_petObjectSO != null)
         {
             Transform petObjectTransform = Instantiate(petObjectSO.prefab, GetSurfacePosition());
             petObjectTransform.GetComponent<Pet>().SetPetObjectParent(this);
+
+            petObjectTransform.GetComponent<Pet>().isOnCheckInCounter = true;
         }
     }
 }

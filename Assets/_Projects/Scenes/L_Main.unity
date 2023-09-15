@@ -444,6 +444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Counter_Checkin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3513045364591274788, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3513045364591274790, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -489,9 +493,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7716259667269451025, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: counterType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716259667269451025, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
       propertyPath: petObjectSO
       value: 
-      objectReference: {fileID: 11400000, guid: e85d2df6c8c311e42b3642261dc02690, type: 2}
+      objectReference: {fileID: 11400000, guid: 68300c1b9f82d6f4ba33356c31973670, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
 --- !u!4 &679719804 stripped
@@ -802,6 +810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Counter_Checkin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3513045364591274788, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3513045364591274790, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -846,6 +858,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7716259667269451025, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716259667269451025, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: counterType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716259667269451025, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: petObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: e85d2df6c8c311e42b3642261dc02690, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
 --- !u!4 &955386780 stripped
@@ -862,7 +886,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 970533865}
-  - component: {fileID: 970533866}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -886,20 +909,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &970533866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 970533864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74d3bc36c36a92447902173dd24daa49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orderManager: {fileID: 0}
-  levelPref: []
 --- !u!1001 &980043934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2292,6 +2301,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Counter_Checkin
       objectReference: {fileID: 0}
+    - target: {fileID: 3513045364591274788, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3513045364591274790, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2337,9 +2350,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7716259667269451025, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
+      propertyPath: counterType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716259667269451025, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
       propertyPath: petObjectSO
       value: 
-      objectReference: {fileID: 11400000, guid: 68300c1b9f82d6f4ba33356c31973670, type: 2}
+      objectReference: {fileID: 11400000, guid: 47f7b1a3aa6427d4896cd06b4c9412a0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f7700eb61b66e04aa5e7026f242a57f, type: 3}
 --- !u!1001 &5598657816907945983

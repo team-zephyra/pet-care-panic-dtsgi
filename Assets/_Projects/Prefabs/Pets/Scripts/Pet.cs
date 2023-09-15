@@ -5,9 +5,12 @@ using UnityEngine;
 public class Pet : MonoBehaviour
 {
     [SerializeField] private PetObjectSO petObjectSO;
-    public float happiness = 3;
-
     private IPetObjectParent petObjectParent;
+
+    public float happiness = 3;
+    public bool isOnCheckInCounter;
+
+    
 
     public PetObjectSO GetPetObjectSO()
     {
