@@ -5,8 +5,7 @@ using UnityEngine;
 public class Pet : MonoBehaviour
 {
     [SerializeField] private PetObjectSO petObjectSO;
-    private int mood = 6; // happiness level
-    
+    public float happiness = 3;
 
     private IPetObjectParent petObjectParent;
 

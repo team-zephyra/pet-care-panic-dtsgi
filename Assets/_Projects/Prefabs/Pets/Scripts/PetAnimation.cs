@@ -34,13 +34,7 @@ public class PetAnimation : MonoBehaviour
         if (Keyboard.current.numpad2Key.isPressed)
         {
             TriggerGloomyAnimation();
-        }
-
-        if (Keyboard.current.numpad3Key.isPressed)
-        {
-            TriggerHappyAnimation();
-        }
-        
+        }   
     }
 
     public void TriggerAngryAnimation()
