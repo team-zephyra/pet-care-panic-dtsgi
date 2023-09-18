@@ -12,7 +12,6 @@ public class PetAnimation : MonoBehaviour
     private int isAngryHash;
     private int isGloomyHash;
     private int isHappyHash;
-    private int isSadHash;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +22,6 @@ public class PetAnimation : MonoBehaviour
         isAngryHash = Animator.StringToHash("isAngry");
         isGloomyHash = Animator.StringToHash("isGloomy");
         isHappyHash = Animator.StringToHash("isHappy");
-        isSadHash = Animator.StringToHash("isSadHash");
     }
 
     void Update()
@@ -76,10 +74,5 @@ public class PetAnimation : MonoBehaviour
     public void TriggerHappyAnimation()
     {
         animator.SetTrigger(isHappyHash);
-    }
-
-    public void TriggerSadAnimation()
-    {
-        animator.SetTrigger(isSadHash);
     }
 }

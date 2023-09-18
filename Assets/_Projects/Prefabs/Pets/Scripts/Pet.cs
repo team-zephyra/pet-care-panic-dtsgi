@@ -19,12 +19,8 @@ public class Pet : MonoBehaviour
     private float currentHappiness;
     private float maxHappiness = 3;
 
-    [Header("Animation Settings")]
-    private PetAnimation petAnimation;
-
     private void Start()
     {
-        petAnimation = GetComponent<PetAnimation>();
         happinessBar = GetComponentInChildren<PetHappinessBar>();
 
         currentHappiness = maxHappiness;
@@ -38,7 +34,6 @@ public class Pet : MonoBehaviour
     private void DecreaseHappiness()
     {
         currentHappiness -= 0.5f;
-        petAnimation.TriggerSadAnimation();
 
         Debug.Log(gameObject.name + " happiness is " + currentHappiness);
 
