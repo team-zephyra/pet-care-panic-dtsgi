@@ -12,6 +12,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Cat Happy
+    second: {fileID: 2100000, guid: d8a228a0fd552b746a7bdaf606697b52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Body_Orange
+    second: {fileID: 2100000, guid: 10baf98f88f889840aaaf308d877791f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Body_Siamese
     second: {fileID: 2100000, guid: b53dd4c9941fc02489d065ad515cada0, type: 2}
   - first:
