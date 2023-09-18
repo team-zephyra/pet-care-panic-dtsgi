@@ -5,6 +5,7 @@ using UnityEngine;
 public class Counter_Checkin : Counter
 {
     [SerializeField] private PetObjectSO petObjectSO;
+    private Pet currentPet;
 
     private void Start()
     {
@@ -17,9 +18,13 @@ public class Counter_Checkin : Counter
         if (HasPetObject() && !_player.HasPetObject())
         {
             // Counter have a PetObject and Player is not carrying anything
-            // Give PetShopObject to Player
+            // Give PetObject to Player
             Transform petObjectTransform = this.petObjectSO.prefab;
-            petObjectTransform.GetComponent<Pet>().isOnCheckInCounter = false;
+            Pet pet = petObjectTransform.GetComponent<Pet>();
+            
+            pet.isOnCheckInCounter = false;
+
+            PetTakenFromCounter();
 
             GetPetObject().SetPetObjectParent(_player);
             CounterSFX.PlayOneShot(SfxType.Take);
@@ -39,9 +44,23 @@ public class Counter_Checkin : Counter
         if (_petObjectSO != null)
         {
             Transform petObjectTransform = Instantiate(petObjectSO.prefab, GetSurfacePosition());
-            petObjectTransform.GetComponent<Pet>().SetPetObjectParent(this);
+            Pet pet = petObjectTransform.GetComponent<Pet>();
+            
+            pet.SetPetObjectParent(this);
+            pet.isOnCheckInCounter = true;
 
-            petObjectTransform.GetComponent<Pet>().isOnCheckInCounter = true;
+            pet.StartDecreaseHappiness();
+
+            currentPet = pet;
+        }
+    }
+
+    private void PetTakenFromCounter()
+    {
+        if (currentPet != null)
+        {
+            currentPet.StopDecreaseHappiness();
+            currentPet = null;
         }
     }
 }

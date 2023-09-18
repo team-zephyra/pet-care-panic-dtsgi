@@ -1,16 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pet : MonoBehaviour
 {
     [SerializeField] private PetObjectSO petObjectSO;
+    
     private IPetObjectParent petObjectParent;
 
-    public float happiness = 3;
+    
     public bool isOnCheckInCounter;
 
-    
+    [Header("Happiness Settings")]
+    [SerializeField] private PetHappinessBar happinessBar;
+    private float decreaseHappinessStartDelay = 6f;
+    private float decreaseHappinessRate = 6f;
+    private float currentHappiness;
+    private float maxHappiness = 3;
+
+    [Header("Animation Settings")]
+    private PetAnimation petAnimation;
+
+    private void Start()
+    {
+        petAnimation = GetComponent<PetAnimation>();
+        happinessBar = GetComponentInChildren<PetHappinessBar>();
+
+        currentHappiness = maxHappiness;
+    }
+
+    private void Update()
+    {
+        happinessBar.UpdateHappinessBar(currentHappiness, maxHappiness);
+    }
+
+    private void DecreaseHappiness()
+    {
+        currentHappiness -= 0.5f;
+        petAnimation.TriggerSadAnimation();
+
+        Debug.Log(gameObject.name + " happiness is " + currentHappiness);
+
+        if (currentHappiness <= 0)
+        {
+            // TO DO
+            // Handle pet's state when happiness reaches 0 or below
+            StopDecreaseHappiness();
+        }
+    }
+
+    public void StartDecreaseHappiness()
+    {
+        InvokeRepeating("DecreaseHappiness", decreaseHappinessStartDelay, decreaseHappinessRate);
+    }
+
+    public void StopDecreaseHappiness()
+    {
+        CancelInvoke("DecreaseHappiness");
+    }
 
     public PetObjectSO GetPetObjectSO()
     {

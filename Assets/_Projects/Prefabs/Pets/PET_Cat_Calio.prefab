@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4461101946462861176, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: happinessBar
+      value: 
+      objectReference: {fileID: 1347481395800655076}
     - target: {fileID: -3584075686100480443, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -22,6 +26,14 @@ PrefabInstance:
     - target: {fileID: 5082024370897306966, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: m_Name
       value: PET_Cat_Calio
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448943312033829012, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 3578824482634126230}
+    - target: {fileID: 6448943312033829012, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: offset.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8819878831753906150, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: m_RootOrder
@@ -106,3 +118,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17fdc1f354637c438e557f6451e8b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1347481395800655076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6448943312033829012, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+  m_PrefabInstance: {fileID: 5461750303035298928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e428806ac83315047b5ef9cc62db3eeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &3578824482634126230 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8819878831753906150, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+  m_PrefabInstance: {fileID: 5461750303035298928}
+  m_PrefabAsset: {fileID: 0}

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class CS_Bathing_Bath : Counter, ICounterServices
 {
+    [Header("Pet Settings")]
     [SerializeField] private PetObjectSO petObjectSO;
+    private Pet currentPet;
 
     [Header("Counter Setup")]
     [SerializeField]private float duration = 7;
@@ -23,11 +24,20 @@ public class CS_Bathing_Bath : Counter, ICounterServices
             PetRegister(_player);
         }
         
-        if(HasPetObject() && canTakePet)
+        if (HasPetObject() && !_player.HasPetObject() && canTakePet)
         {
             CounterSFX.PlayOneShot(SfxType.Take);
             DeactiveBubbleEffect();
             PetUnregister(_player);
+        }
+    }
+
+    private void PetTakenFromCounter()
+    {
+        if (currentPet != null)
+        {
+            currentPet.StopDecreaseHappiness();
+            currentPet = null;
         }
     }
 
@@ -39,10 +49,22 @@ public class CS_Bathing_Bath : Counter, ICounterServices
         VFX.gameObject.SetActive(false);
         ActiveBubbleEffect(BubbleType.finish);
         CounterSFX.PlayOneShot(SfxType.Bubble);
+
+        // Restart DecreaseHappiness for the current pet if one exists.
+        if (currentPet != null)
+        {
+            currentPet.StartDecreaseHappiness();
+        }
     }
 
     public void ServiceStarting()
     {
+        // Store currentPet value from GetPetObject
+        if (currentPet == null)
+        {
+            currentPet = GetPetObject();
+        }
+
         // Initiate starting services
         StartCoroutine(ServiceOnProgress());
 
@@ -105,9 +127,12 @@ public class CS_Bathing_Bath : Counter, ICounterServices
 
     public void PetUnregister(PlayerInteraction player)
     {
-        if(HasPetObject() && !player.HasPetObject()) 
+        if (HasPetObject() && !player.HasPetObject()) 
         {
-            //DO Order Checklist Here!
+            // Reset currentPet value
+            PetTakenFromCounter();
+
+            // DO Order Checklist Here!
             GetPetObject().SetPetObjectParent(player);
 
             // Clear Counter

@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class CS_Bathing_Drying : Counter, ICounterServices
 {
+    [Header("Pet Settings")]
     [SerializeField] private PetObjectSO petObjectSO;
+    private Pet currentPet;
 
     [Header("Counter Setup")]
     [SerializeField]private float duration = 7;
@@ -36,6 +38,15 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         }
     }
 
+    private void PetTakenFromCounter()
+    {
+        if (currentPet != null)
+        {
+            currentPet.StopDecreaseHappiness();
+            currentPet = null;
+        }
+    }
+
     public void ServiceFinished()
     {
         canTakePet = true;
@@ -44,10 +55,22 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         ActiveBubbleEffect(BubbleType.finish);
         CounterSFX.PlayOneShot(SfxType.Bubble);
         VFX.gameObject.SetActive(false);
+
+        // Restart DecreaseHappiness for the current pet if one exists.
+        if (currentPet != null)
+        {
+            currentPet.StartDecreaseHappiness();
+        }
     }
 
     public void ServiceStarting()
     {
+        // Store currentPet value from GetPetObject
+        if (currentPet == null)
+        {
+            currentPet = GetPetObject();
+        }
+
         // Initiate starting services
         StartCoroutine(ServiceOnProgress());
 
@@ -108,8 +131,11 @@ public class CS_Bathing_Drying : Counter, ICounterServices
 
     public void PetUnregister(PlayerInteraction player)
     {
-        if(HasPetObject() && !player.HasPetObject()) 
+        if (HasPetObject() && !player.HasPetObject()) 
         {
+            // Reset currentPet value
+            PetTakenFromCounter();
+
             //DO Order Checklist Here!
             GetPetObject().SetPetObjectParent(player);
 

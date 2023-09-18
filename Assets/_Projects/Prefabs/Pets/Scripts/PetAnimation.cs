@@ -1,26 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PetAnimation : MonoBehaviour
 {
+    [Header("Required References")]
     private Pet pet;
     private Animator animator;
 
+    [Header("Animation Settings")]
     private int isAngryHash;
     private int isGloomyHash;
     private int isHappyHash;
+    private int isSadHash;
 
     // Start is called before the first frame update
     void Start()
     {
-        pet =GetComponent<Pet>();
+        pet = GetComponent<Pet>();
         animator = GetComponent<Animator>();
 
         isAngryHash = Animator.StringToHash("isAngry");
         isGloomyHash = Animator.StringToHash("isGloomy");
         isHappyHash = Animator.StringToHash("isHappy");
+        isSadHash = Animator.StringToHash("isSadHash");
     }
 
     void Update()
@@ -54,10 +57,7 @@ public class PetAnimation : MonoBehaviour
 
     public void TriggerAngryAnimation()
     {
-        // To-Do:
-        // Tie in pet mood/happiness value to trigger animation
-
-        animator.SetTrigger(isAngryHash);
+         animator.SetTrigger(isAngryHash);
     }
 
     public void PlayGloomyAnimation()
@@ -75,9 +75,11 @@ public class PetAnimation : MonoBehaviour
 
     public void TriggerHappyAnimation()
     {
-        // To-Do:
-        // Tie in pet mood/happiness value to trigger animation
-
         animator.SetTrigger(isHappyHash);
+    }
+
+    public void TriggerSadAnimation()
+    {
+        animator.SetTrigger(isSadHash);
     }
 }
