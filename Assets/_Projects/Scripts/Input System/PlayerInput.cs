@@ -294,6 +294,24 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""626d3517-eafe-435c-b983-d70f9238e4be"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6074340-b54e-42d6-bb8a-cdb6c3bb6cf7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -725,6 +743,39 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""AnyKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa645e1e-fadf-4e12-8eec-25d446544302"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f8c9566-48d2-4d64-8089-ff4c39d02b51"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""548453d3-f51c-4797-bad4-0330c174e78f"",
+                    ""path"": ""<Keyboard>/numpadEnter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -776,6 +827,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_AnyKey = m_UI.FindAction("AnyKey", throwIfNotFound: true);
+        m_UI_Back = m_UI.FindAction("Back", throwIfNotFound: true);
+        m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -887,6 +940,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_AnyKey;
+    private readonly InputAction m_UI_Back;
+    private readonly InputAction m_UI_Confirm;
     public struct UIActions
     {
         private @PlayerInput m_Wrapper;
@@ -902,6 +957,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @AnyKey => m_Wrapper.m_UI_AnyKey;
+        public InputAction @Back => m_Wrapper.m_UI_Back;
+        public InputAction @Confirm => m_Wrapper.m_UI_Confirm;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -944,6 +1001,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @AnyKey.started -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
                 @AnyKey.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
                 @AnyKey.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnAnyKey;
+                @Back.started -= m_Wrapper.m_UIActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnBack;
+                @Confirm.started -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirm;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -981,6 +1044,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @AnyKey.started += instance.OnAnyKey;
                 @AnyKey.performed += instance.OnAnyKey;
                 @AnyKey.canceled += instance.OnAnyKey;
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
             }
         }
     }
@@ -1021,5 +1090,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnAnyKey(InputAction.CallbackContext context);
+        void OnBack(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
     }
 }
