@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +29,11 @@ public class InputManager : MonoBehaviour
         Vector2 moveInputVector = gameplayActions.Move.ReadValue<Vector2>();
 
         return moveInputVector;
+    }
+
+    public PlayerInput GetPlayerInput()
+    {
+        return playerInput;
     }
 
     void OnEnable()
