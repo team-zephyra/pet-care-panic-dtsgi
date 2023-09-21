@@ -5,3 +5,10 @@ public enum OrderType
     Grooming,
     Daycare
 }
+
+public enum PetType
+{
+    Cat,
+    Dog,
+    Bird
+}

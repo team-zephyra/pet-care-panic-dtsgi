@@ -5,15 +5,12 @@ using UnityEngine;
 public class OrderCard : MonoBehaviour
 {
     [Header("Setup")]
+    [SerializeField] private SpriteRenderer petIcon;
     [SerializeField] private Transform taskParent;
     [SerializeField] private OrderTask prefOrderTask;
 
     [Header("Properties")]
     private OrderCardObjectSO[] taskList;
-
-    private void Start()
-    {
-    }
 
     public void NewOrderCard(OrderCardObjectSO[] taskList)
     {
