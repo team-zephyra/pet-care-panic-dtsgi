@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class CS_Bathing_Drying : Counter, ICounterServices
@@ -9,6 +8,7 @@ public class CS_Bathing_Drying : Counter, ICounterServices
     [Header("Pet Settings")]
     [SerializeField] private PetObjectSO petObjectSO;
     private Pet currentPet;
+    private PetTaskBubble currentPetTaskBubble;
 
     [Header("Counter Setup")]
     [SerializeField]private float duration = 7;
@@ -59,7 +59,9 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         // Restart DecreaseHappiness for the current pet if one exists.
         if (currentPet != null)
         {
+            currentPet.isDryingDone = true;
             currentPet.StartDecreaseHappiness();
+            currentPetTaskBubble.EnableBubbleImage();
         }
     }
 
@@ -69,7 +71,11 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         if (currentPet == null)
         {
             currentPet = GetPetObject();
+            currentPetTaskBubble = GetPetObject().GetComponentInChildren<PetTaskBubble>();
         }
+
+        // Disable Pet Bubble
+        currentPetTaskBubble.DisableBubbleImage();
 
         // Initiate starting services
         StartCoroutine(ServiceOnProgress());
@@ -115,12 +121,22 @@ public class CS_Bathing_Drying : Counter, ICounterServices
     {
         if (!HasPetObject() && player.HasPetObject())
         {
-            // Can put "something" to Counter
-            player.GetPetObject().SetPetObjectParent(this);
-            canTakePet = false;
+            Pet pet = player.GetPetObject().transform.GetComponent<Pet>();
 
-            // Service On Progress
-            ServiceStarting();
+            if (pet.isBathingDone && !pet.isDryingDone)
+            {
+                // Can put "something" to Counter
+                player.GetPetObject().SetPetObjectParent(this);
+                canTakePet = false;
+
+                // Service On Progress
+                ServiceStarting();
+            }
+            else
+            {
+                // Cannot put Pet onto the counter
+            }
+            
         }
         else
         {

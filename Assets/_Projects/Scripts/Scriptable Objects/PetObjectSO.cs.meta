@@ -3,7 +3,11 @@ guid: 295035f1692f9e140b7a6926f5abcb14
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - prefab: {instanceID: 0}
+  - needBathingBubble: {fileID: 21300000, guid: dda0673b48c99094f8ef49089ac8d086, type: 3}
+  - needDryingBubble: {fileID: 21300000, guid: d14c1b931a763c145a124c44c56b14b1, type: 3}
+  - serviceIsDoneBubble: {fileID: 21300000, guid: 0e7d7bb583c53b24395ef3d15ba438dc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

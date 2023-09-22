@@ -23,9 +23,33 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f6295ebae51677b4282653b091400585, type: 2}
+    - target: {fileID: 1531812734432532770, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531812734432532770, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531812734432532770, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531812734432532770, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1531812734432532770, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5082024370897306966, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: m_Name
       value: PET_Cat_Calio
+      objectReference: {fileID: 0}
+    - target: {fileID: 5590442917199823242, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6448943312033829012, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: target
@@ -33,7 +57,11 @@ PrefabInstance:
       objectReference: {fileID: 3578824482634126230}
     - target: {fileID: 6448943312033829012, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: offset.y
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448943312033829012, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: offset.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8819878831753906150, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: m_RootOrder
@@ -79,6 +107,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9051773066166913603, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: serviceIsDone
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e7d7bb583c53b24395ef3d15ba438dc, type: 3}
+    - target: {fileID: 9051773066166913603, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: needDryingSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d14c1b931a763c145a124c44c56b14b1, type: 3}
+    - target: {fileID: 9051773066166913603, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: needBathingSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dda0673b48c99094f8ef49089ac8d086, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
 --- !u!1 &957844828211335462 stripped

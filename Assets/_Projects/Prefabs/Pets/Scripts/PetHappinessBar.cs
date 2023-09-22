@@ -23,7 +23,7 @@ public class PetHappinessBar : MonoBehaviour
     void Update()
     {
         transform.rotation = mainCamera.transform.rotation;
-        transform.position = target.position + offset;
+        // transform.position = target.position + offset;
     }
 
     public void UpdateHappinessBar(float currentValue, float maxValue)

@@ -15,6 +15,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject titleText;
     public float titleTextAnimationTime = 1f;
     private bool _isOnTitleScreen;
+    private bool _hasStarted; // Variable to track if the startup animation has already been played.
 
     [Header("Main Menu Page Settings")]
     public GameObject mainMenu;
@@ -49,7 +50,11 @@ public class UIMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartupAnimation();
+        if (!_hasStarted)
+        {
+            StartupAnimation();
+        }
+
         SetupPlayerInput();
     }
 
@@ -158,6 +163,9 @@ public class UIMainMenu : MonoBehaviour
         LeanTween.scale(titleText, new Vector3(1f, 1f, 1f), titleTextAnimationTime)
             .setDelay(titleLogoAnimationTime)
             .setEaseOutBounce();
+
+        _hasStarted = true;
+        _isOnTitleScreen = true;
     }
 
     private void MainMenuAnimation()

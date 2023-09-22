@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class Pet : MonoBehaviour
 {
     [SerializeField] private PetObjectSO petObjectSO;
-    
     private IPetObjectParent petObjectParent;
-
     
     public bool isOnCheckInCounter;
+    public bool isBathingDone;
+    public bool isDryingDone;
 
     [Header("Happiness Settings")]
     [SerializeField] private PetHappinessBar happinessBar;
@@ -53,6 +53,11 @@ public class Pet : MonoBehaviour
     public void StopDecreaseHappiness()
     {
         CancelInvoke("DecreaseHappiness");
+    }
+
+    public bool BathingServiceDone()
+    {
+        return isBathingDone && isDryingDone;
     }
 
     public PetObjectSO GetPetObjectSO()

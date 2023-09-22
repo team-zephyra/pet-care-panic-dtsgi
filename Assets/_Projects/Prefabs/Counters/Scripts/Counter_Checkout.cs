@@ -11,13 +11,23 @@ public class Counter_Checkout : Counter
         
         if (!HasPetObject() && _player.HasPetObject())
         {
-            // Can put "something" to Counter
-            _player.GetPetObject().SetPetObjectParent(this);
+            Pet pet = _player.GetPetObject().transform.GetComponent<Pet>();
 
-            CounterSFX.PlayOneShot(SfxType.Put);
+            if (pet.BathingServiceDone())
+            {
+                // Can put "something" to Counter
+                _player.GetPetObject().SetPetObjectParent(this);
 
-            // Checkout Pet and completing order
-            StartCoroutine(CheckoutPet());
+                CounterSFX.PlayOneShot(SfxType.Put);
+
+                // Checkout Pet and completing order
+                StartCoroutine(CheckoutPet());
+            }
+            else
+            {
+                // Service is not done
+                Debug.Log("Service is not done! Cannot checkout");
+            }
         }
         else
         {

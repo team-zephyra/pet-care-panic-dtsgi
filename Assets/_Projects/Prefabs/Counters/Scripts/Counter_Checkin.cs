@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Counter_Checkin : Counter
 {
-    [SerializeField] private PetObjectSO petObjectSO;
+    private PetObjectSO petObjectSO;
     private Pet currentPet;
 
     private void Start()
     {
         // For Debuging PET Handle
-        CheckInPet(petObjectSO);
+        // CheckInPet(petObjectSO);
     }
 
     public override void Interact(PlayerInteraction _player)
@@ -43,8 +43,10 @@ public class Counter_Checkin : Counter
         // Can spawn PetObject
         if (_petObjectSO != null)
         {
-            Transform petObjectTransform = Instantiate(petObjectSO.prefab, GetSurfacePosition());
+            Transform petObjectTransform = Instantiate(_petObjectSO.prefab, GetSurfacePosition());
             Pet pet = petObjectTransform.GetComponent<Pet>();
+
+            petObjectSO = _petObjectSO;
             
             pet.SetPetObjectParent(this);
             pet.isOnCheckInCounter = true;
