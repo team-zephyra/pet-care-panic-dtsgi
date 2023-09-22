@@ -43,6 +43,7 @@ public class UIMainMenu : MonoBehaviour
     public List<UIPage> pages;
     private int currentPage;
     private int defaultPage;
+    public GameObject clickEffect;
 
 
     // Start is called before the first frame update
@@ -58,6 +59,7 @@ public class UIMainMenu : MonoBehaviour
         if (_isOnTitleScreen && playerInput.UI.AnyKey.triggered)
         {
             MainMenuAnimation();
+            CreateClickEffect();
         }
 
         if (_isOnCreditsPage && playerInput.UI.Back.triggered)
@@ -118,6 +120,14 @@ public class UIMainMenu : MonoBehaviour
             .setOnComplete(DisableCreditsPage);
 
         _isOnCreditsPage = false;
+    }
+
+    public void CreateClickEffect()
+    {
+        if (clickEffect)
+        {
+            Instantiate(clickEffect, transform.position, Quaternion.identity, null);
+        }
     }
 
     private void SetupPlayerInput()
