@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Char_Shadow
+    second: {fileID: 2100000, guid: fc09cfef5348f7d4982fa6ad5d09627f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Char_Zefira
     second: {fileID: 2100000, guid: d70d189c7429fdd49a6059955949748b, type: 2}
   - first:

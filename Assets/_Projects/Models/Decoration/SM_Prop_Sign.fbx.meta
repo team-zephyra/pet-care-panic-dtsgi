@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: M_Prop_Texture Properties
     second: {fileID: 2100000, guid: bdfbc02b96b173544b87592003b79357, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Prop_Texture Properties.005
+    second: {fileID: 2100000, guid: bdfbc02b96b173544b87592003b79357, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
