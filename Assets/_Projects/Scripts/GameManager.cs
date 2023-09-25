@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameTimer gameTimer;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameOver gameOverPanel;
+    [SerializeField] private Scoring gameScore;
     private bool IsPaused = true;
     private int indexOrder = 0;
 
@@ -51,6 +54,26 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameStart()
     {
         ResumeGame();
+        //int idx = 0;
+        //int totalSpawn = gameSetup.addCustomerOrder.Length;
+
+        //while (idx < totalSpawn)
+        //{
+        //    if (IsPaused)
+        //    {
+        //        // wait a while before continue to avoid infinite loop
+        //        yield return new WaitForEndOfFrame();
+        //        continue;
+        //    }
+
+        //    //waiting 1 second in real time and increasing the timer value
+        //    yield return new WaitForSecondsRealtime(1);
+        //    timer++;
+        //    UpdateTimer();
+
+        //}
+        //OnTimeOut?.Invoke();
+
         SpawnNewOrder();
         yield return new WaitForSeconds(1);
         SpawnNewOrder();
@@ -138,5 +161,19 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("L_MainMenu");
     }
+    #endregion
+
+    public void GameOver()
+    {
+        gameOverPanel.GameOverTrigger();
+    }
+
+    #region Scoring
+
+    public void UpdateScore(int _score)
+    {
+        gameScore.UpdateScore(_score);
+    }
+
     #endregion
 }

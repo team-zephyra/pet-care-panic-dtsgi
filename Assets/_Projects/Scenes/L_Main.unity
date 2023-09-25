@@ -1353,10 +1353,10 @@ RectTransform:
   m_Father: {fileID: 1698260470}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 356, y: 45.7}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -73, y: 45.7}
+  m_SizeDelta: {x: 180, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &392197120
 MonoBehaviour:
@@ -1378,7 +1378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a89f254917c65749940261cc3106796, type: 2}
   m_sharedMaterial: {fileID: -5942045868843588275, guid: 1a89f254917c65749940261cc3106796, type: 2}
@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2578,6 +2578,7 @@ GameObject:
   - component: {fileID: 779289245}
   - component: {fileID: 779289248}
   - component: {fileID: 779289247}
+  - component: {fileID: 779289249}
   m_Layer: 5
   m_Name: Panel_Timer
   m_TagString: Untagged
@@ -2644,6 +2645,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779289244}
   m_CullTransparentMesh: 1
+--- !u!114 &779289249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779289244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5beaa7d44b756fd4d83e5f350bc42786, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  durationMax: 300
+  pauseTimer: 0
+  timerText: {fileID: 838051628}
 --- !u!1 &789681211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,7 +2829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -21.8, y: 45.7}
+  m_AnchoredPosition: {x: -40.4, y: 45.7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &838051628
@@ -2869,7 +2886,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -3508,7 +3525,6 @@ Transform:
   m_Children:
   - {fileID: 71426036}
   - {fileID: 679549676}
-  - {fileID: 1843617341}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3526,9 +3542,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSetup: {fileID: 1373116720}
   order: {fileID: 1373116721}
-  gameTimer: {fileID: 1843617342}
+  gameTimer: {fileID: 779289249}
   pausePanel: {fileID: 213189095}
-  gameOverPanel: {fileID: 0}
+  gameOverPanel: {fileID: 1928321737}
+  gameScore: {fileID: 1698260473}
   petInitiate:
     pets:
     - {fileID: 11400000, guid: 47f7b1a3aa6427d4896cd06b4c9412a0, type: 2}
@@ -4880,8 +4897,12 @@ MonoBehaviour:
     orderType: 0
     petType: 2
   - _index: 1
-    timeToSpawn: 0
-    orderType: 1
+    timeToSpawn: 5
+    orderType: 0
+    petType: 1
+  - _index: 2
+    timeToSpawn: 2
+    orderType: 0
     petType: 1
 --- !u!114 &1373116721
 MonoBehaviour:
@@ -5621,6 +5642,7 @@ GameObject:
   - component: {fileID: 1698260470}
   - component: {fileID: 1698260472}
   - component: {fileID: 1698260471}
+  - component: {fileID: 1698260473}
   m_Layer: 5
   m_Name: Panel_Score
   m_TagString: Untagged
@@ -5687,6 +5709,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698260469}
   m_CullTransparentMesh: 1
+--- !u!114 &1698260473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698260469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14a1a23ee555664bb398a4bc99033fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textScore: {fileID: 392197120}
 --- !u!1 &1711316038
 GameObject:
   m_ObjectHideFlags: 0
@@ -6080,54 +6115,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!1 &1843617340
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1843617341}
-  - component: {fileID: 1843617342}
-  m_Layer: 0
-  m_Name: Timer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1843617341
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843617340}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 970533865}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1843617342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1843617340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5beaa7d44b756fd4d83e5f350bc42786, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
-  durationMax: 20
-  pauseTimer: 0
-  timerText: {fileID: 838051628}
 --- !u!1 &1852587304
 GameObject:
   m_ObjectHideFlags: 0

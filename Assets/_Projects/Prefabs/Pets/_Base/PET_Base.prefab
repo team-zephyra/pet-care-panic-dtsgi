@@ -87,7 +87,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -586,7 +586,7 @@ MonoBehaviour:
   isOnCheckInCounter: 0
   pet_order_index: 0
   taskCompleted: 0
-  happinessBar: {fileID: 0}
+  happinessBar: {fileID: 6448943312033829012}
 --- !u!65 &-3584075686100480443
 BoxCollider:
   m_ObjectHideFlags: 0

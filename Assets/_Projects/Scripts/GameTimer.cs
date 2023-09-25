@@ -23,6 +23,7 @@ public class GameTimer : MonoBehaviour
 
     private void TimeOut()
     {
+        GameManager.instance.GameOver();
         Debug.Log("Your timer is up.");
     }
 

@@ -13,7 +13,7 @@ public class Pet : MonoBehaviour
     [SerializeField] private BubbleEffectSO[] bubbleOrderSO;
     [SerializeField] private BubbleEffectSO bubblePetSO;
     private BubbleEffectSO currentBubbleSO;
-    
+
 
     /* Pet & Counters */
     [Header("Pet Dep Counters")]
@@ -25,27 +25,37 @@ public class Pet : MonoBehaviour
     public int pet_order_index;
     private OrderCardObjectSO[] needs;
     private OrderType orderType;
-    [SerializeField]private int taskCompleted = 0;
+    [SerializeField] private int taskCompleted = 0;
+
+    /* Pet Score */
+    [Header("Pet Scores")]
+    [SerializeField]private int petScore = 100;
+    [SerializeField]private int happinessDecreaseScore = -10;
+    [SerializeField]private int bathingScore = 100;
+    [SerializeField]private int groomingScore = 150;
+    [SerializeField]private int daycareScore = 200;
 
     /* Pet Happiness */
     [Header("Happiness Settings")]
     [SerializeField] private PetHappinessBar happinessBar;
     private float decreaseHappinessStartDelay = 6f;
     private float decreaseHappinessRate = 6f;
-    private float currentHappiness;
+    private float currentHappiness = 3;
     private float maxHappiness = 3;
+    private IEnumerator happinessDecrease;
 
     private void Start()
     {
-        happinessBar = GetComponentInChildren<PetHappinessBar>();
+        if (!happinessBar)
+            happinessBar = GetComponentInChildren<PetHappinessBar>();
 
         currentHappiness = maxHappiness;
-        //happinessBar.UpdateHappinessBar(currentHappiness, maxHappiness);
+
     }
 
     private void Update()
     {
-        // happinessBar.UpdateHappinessBar(currentHappiness, maxHappiness); Moved to Start
+        //happinessBar.UpdateHappinessBar(currentHappiness, maxHappiness); //Moved to Start
     }
 
     #region Pet Order
@@ -55,7 +65,7 @@ public class Pet : MonoBehaviour
         needs = _needs;
         orderType = _ordertype;
 
-        switch(orderType)
+        switch (orderType)
         {
             case OrderType.Bathing: currentBubbleSO = bubbleOrderSO[0]; break;
             case OrderType.Grooming: currentBubbleSO = bubbleOrderSO[1]; break;
@@ -75,12 +85,12 @@ public class Pet : MonoBehaviour
 
     public void UpdateTaskComplete(OrderTaskCategory _cat)
     {
-        if(taskCompleted >0 && taskCompleted <3)
+        if (taskCompleted > 0 && taskCompleted < 3)
         {
             if (needs[taskCompleted].sorted)
             {
                 int indexTaskBefore = 1;
-                if(needs[taskCompleted].taskType == OrderTaskCategory.Drying)
+                if (needs[taskCompleted].taskType == OrderTaskCategory.Drying)
                 {
                     indexTaskBefore = 2;
                 }
@@ -99,7 +109,7 @@ public class Pet : MonoBehaviour
                 taskCompleted += 1;
             }
         }
-        else if(taskCompleted == 0)
+        else if (taskCompleted == 0)
         {
             if (needs[taskCompleted].taskType == _cat)
             {
@@ -107,7 +117,7 @@ public class Pet : MonoBehaviour
                 taskCompleted += 1;
                 if (needs[taskCompleted].taskType == OrderTaskCategory.Next)
                 {
-                    taskCompleted+= 1;
+                    taskCompleted += 1;
                 }
             }
         }
@@ -119,7 +129,7 @@ public class Pet : MonoBehaviour
 
     public OrderTaskCategory CheckNeedsCategory()
     {
-        if(taskCompleted < 3)
+        if (taskCompleted < 3)
         {
             return needs[taskCompleted].taskType;
 
@@ -130,7 +140,7 @@ public class Pet : MonoBehaviour
         }
     }
 
-    public int TaskCompleted { get => taskCompleted;}
+    public int TaskCompleted { get => taskCompleted; }
     #endregion
 
     #region Pet Happiness
@@ -148,30 +158,43 @@ public class Pet : MonoBehaviour
         StartCoroutine(ShowBubble(bubblePetSO.imageSprite[idx]));
     }
 
-    private void DecreaseHappiness()
+    private IEnumerator DecreaseHappiness()
     {
-        currentHappiness -= 0.5f;
-
-        //Debug.Log(gameObject.name + " happiness is " + currentHappiness);
-
-        if (currentHappiness <= 0)
+        while (currentHappiness > 0)
         {
-            // TO DO
-            // Handle pet's state when happiness reaches 0 or below
-            StopDecreaseHappiness();
+            //if (pauseTimer)
+            //{
+            //    // wait a while before continue to avoid infinite loop
+            //    yield return new WaitForEndOfFrame();
+            //    continue;
+            //}
+
+            //waiting 1 second in real time and increasing the timer value
+            yield return new WaitForSecondsRealtime(decreaseHappinessRate);
+
+
+            if (currentHappiness > 0)
+            {
+                currentHappiness -= 0.5f;
+                UpdateScore(happinessDecreaseScore);
+                happinessBar.UpdateHappinessBar(currentHappiness, maxHappiness);
+            }
+
+            StartCoroutine(ShowBubble(currentBubbleSO.imageSprite[taskCompleted]));
         }
 
-        StartCoroutine(ShowBubble(currentBubbleSO.imageSprite[taskCompleted]));
     }
 
     public void StartDecreaseHappiness()
     {
-        InvokeRepeating("DecreaseHappiness", decreaseHappinessStartDelay, decreaseHappinessRate);
+        happinessDecrease = DecreaseHappiness();
+        StartCoroutine(happinessDecrease);
+        //InvokeRepeating("DecreaseHappiness", decreaseHappinessStartDelay, decreaseHappinessRate);
     }
 
     public void StopDecreaseHappiness()
     {
-        CancelInvoke("DecreaseHappiness");
+        StopCoroutine(happinessDecrease);
     }
 
     public PetObjectSO GetPetObjectSO()
@@ -216,6 +239,27 @@ public class Pet : MonoBehaviour
         petObjectParent.ClearPetObject();
         Destroy(gameObject);
     }
+
+    #endregion
+
+    #region PetScore
+
+    public void UpdateScore(int _score)
+    {
+        petScore += _score;
+    }
+
+    public void UpdateScore(OrderType orderType)
+    {
+        switch(orderType)
+        {
+            case OrderType.Bathing: UpdateScore(bathingScore); break;
+            case OrderType.Grooming: UpdateScore(groomingScore); break;
+            case OrderType.Daycare: UpdateScore(daycareScore); break;
+        }
+    }
+
+    public int PetScore { get => petScore; }
 
     #endregion
 }

@@ -27,13 +27,15 @@ public class Counter_Checkout : Counter
     public IEnumerator CheckoutPet()
     {
         // This seconds should be a little bit higher than Pet Happy animation
-        float seconds = 3f;
+        float seconds = 1.5f;
 
         // Trigger Happy Animation
         GetPetObject().GetComponent<PetAnimation>().TriggerHappyAnimation();
 
         // Do Checkout Logic
         yield return new WaitForSeconds(seconds);
+        int score = petObject.PetScore;
+        GameManager.instance.UpdateScore(score);
         CounterSFX.PlayOneShot(SfxType.Progress);
 
 

@@ -8,11 +8,14 @@ public class CS_Bathing_Bath : Counter, ICounterServices
 {
 
     [Header("Counter Setup")]
+    [SerializeField] private OrderType orderType;
     [SerializeField] private OrderTaskCategory taskCategory;
     [SerializeField] private float duration = 7;
     [SerializeField] private Transform progressBarFill;
     [SerializeField] private Transform VFX;
     private bool canTakePet = true;
+
+    private Pet currentPet;
 
     #region Interactions
     public override void Interact(PlayerInteraction _player)
@@ -30,10 +33,10 @@ public class CS_Bathing_Bath : Counter, ICounterServices
 
     private void PetTakenFromCounter()
     {
-        if (petObject != null)
+        if (currentPet != null)
         {
-            petObject.StopDecreaseHappiness();
-            petObject = null;
+            currentPet.StopDecreaseHappiness();
+            currentPet = null;
         }
     }
     public void PetRegister(PlayerInteraction _player)
@@ -89,10 +92,11 @@ public class CS_Bathing_Bath : Counter, ICounterServices
 
         // Do Order Checklist Here!
         //Debug.Log(petObject.CheckNeedsCaategory() + " vs " + taskCategory);
-        if(petObject.CheckNeedsCategory() == this.taskCategory)
+        if(currentPet.CheckNeedsCategory() == this.taskCategory)
         {
             // Scoring Here
-            GameManager.instance.UpdateOrderTask(OrderTaskCategory.Bathing, petObject.pet_order_index);
+            GameManager.instance.UpdateOrderTask(OrderTaskCategory.Bathing, currentPet.pet_order_index);
+            currentPet.UpdateScore(orderType);
         }
 
         // Do End VFX here
@@ -101,18 +105,18 @@ public class CS_Bathing_Bath : Counter, ICounterServices
         CounterSFX.PlayOneShot(SfxType.Bubble);
 
         // Restart DecreaseHappiness for the current pet if one exists.
-        if (petObject != null)
+        if (currentPet != null)
         {
-            petObject.StartDecreaseHappiness();
+            currentPet.StartDecreaseHappiness();
         }
     }
 
     public void ServiceStarting()
     {
         // Store currentPet value from GetPetObject
-        if (petObject == null)
+        if (currentPet == null)
         {
-            petObject = GetPetObject();
+            currentPet = GetPetObject();
         }
 
         // Initiate starting services

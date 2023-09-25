@@ -10,11 +10,14 @@ public class CS_Bathing_Drying : Counter, ICounterServices
     [Header("Pet Settings")]
 
     [Header("Counter Setup")]
+    [SerializeField] private OrderType orderType;
     [SerializeField]private OrderTaskCategory taskCategory;
     [SerializeField]private float duration = 7;
     [SerializeField]private Transform progressBarFill;
     [SerializeField]private Transform VFX;
     private bool canTakePet = true;
+
+    private Pet currentPet;
 
     private void Start()
     {
@@ -38,10 +41,10 @@ public class CS_Bathing_Drying : Counter, ICounterServices
 
     private void PetTakenFromCounter()
     {
-        if (petObject != null)
+        if (currentPet != null)
         {
-            petObject.StopDecreaseHappiness();
-            petObject = null;
+            currentPet.StopDecreaseHappiness();
+            currentPet = null;
         }
     }
 
@@ -100,9 +103,10 @@ public class CS_Bathing_Drying : Counter, ICounterServices
 
         // Do Order Checklist Here!
         //Debug.Log(currentPet.CheckNeedsCaategory() + " vs " + taskCategory);
-        if (petObject.CheckNeedsCategory() == this.taskCategory)
+        if (currentPet.CheckNeedsCategory() == this.taskCategory)
         {
-            GameManager.instance.UpdateOrderTask(OrderTaskCategory.Drying, petObject.pet_order_index);
+            GameManager.instance.UpdateOrderTask(OrderTaskCategory.Drying, currentPet.pet_order_index);
+            currentPet.UpdateScore(orderType);
         }
 
         // Do End VFX here
@@ -111,18 +115,18 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         CounterSFX.PlayOneShot(SfxType.Bubble);
 
         // Restart DecreaseHappiness for the current pet if one exists.
-        if (petObject != null)
+        if (currentPet != null)
         {
-            petObject.StartDecreaseHappiness();
+            currentPet.StartDecreaseHappiness();
         }
     }
 
     public void ServiceStarting()
     {
         // Store currentPet value from GetPetObject
-        if (petObject == null)
+        if (currentPet == null)
         {
-            petObject = GetPetObject();
+            currentPet = GetPetObject();
         }
 
         // Initiate starting services
