@@ -54,34 +54,41 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameStart()
     {
         ResumeGame();
-        //int idx = 0;
-        //int totalSpawn = gameSetup.addCustomerOrder.Length;
+        int idx = 0;
+        int totalSpawn = gameSetup.addCustomerOrder.Length;
 
-        //while (idx < totalSpawn)
-        //{
-        //    if (IsPaused)
-        //    {
-        //        // wait a while before continue to avoid infinite loop
-        //        yield return new WaitForEndOfFrame();
-        //        continue;
-        //    }
+        do
+        {
+            if (IsPaused)
+            {
+                // wait a while before continue to avoid infinite loop
+                yield return new WaitForEndOfFrame();
+                continue;
+            }
 
-        //    //waiting 1 second in real time and increasing the timer value
-        //    yield return new WaitForSecondsRealtime(1);
-        //    timer++;
-        //    UpdateTimer();
+            //waiting 1 second in real time and increasing the timer value
+            yield return new WaitForSecondsRealtime(gameSetup.addCustomerOrder[idx].timeToSpawn);
+            if (!SpawnNewOrder())
+            {
+                if (!SpawnNewOrder())
+                {
+                    yield return new WaitForSeconds(1);
+                    SpawnNewOrder();
+                    idx++;
+                    continue;
+                }
+            }
+            else
+            {
+                idx++;
+            }
 
-        //}
-        //OnTimeOut?.Invoke();
-
-        SpawnNewOrder();
-        yield return new WaitForSeconds(1);
-        SpawnNewOrder();
+        } while (idx < totalSpawn);
     }
 
     #region Spawn Order and Pet
 
-    private void SpawnNewOrder()
+    private bool SpawnNewOrder()
     {
 
         /* Checkin New Pet To Counter */
@@ -107,10 +114,12 @@ public class GameManager : MonoBehaviour
                 petList.Add(p);
 
                 indexOrder++;
-                return;
+                return true;
             }
             ++i;
         } while (i < gameSetup.checkinCounters.Count);
+
+        return false;
     }
 
     /* Order System */
