@@ -1,29 +1,41 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrderCard : MonoBehaviour
 {
     [Header("Setup")]
-    [SerializeField] private SpriteRenderer petIcon;
+    [SerializeField] private Image petIcon;
     [SerializeField] private Transform taskParent;
     [SerializeField] private OrderTask prefOrderTask;
+    public int orderCardIndex;
 
-    [Header("Properties")]
-    private OrderCardObjectSO[] taskList;
+    [Header("Properties")] [HideInInspector]
+    public List<OrderTask> taskList;
+    public OrderCardObjectSO[] taskListSO;
 
-    public void NewOrderCard(OrderCardObjectSO[] taskList)
+    public void SetIconCard(Sprite _sprite)
     {
-        this.taskList = taskList;
-        SetupTask();
+        petIcon.sprite = _sprite;
     }
 
-    public void SetupTask()
+    public void SetupCard(OrderCardObjectSO[] _taskList)
     {
-        foreach(OrderCardObjectSO oc in taskList)
+        taskListSO = _taskList;
+
+        if (_taskList != null)
         {
-            OrderTask ot = Instantiate(prefOrderTask, taskParent);
-            ot.Setup(oc.sorted, oc.icon);
+            foreach (OrderCardObjectSO oc in _taskList)
+            {
+                OrderTask ot = Instantiate(prefOrderTask, taskParent);
+                ot.Setup(oc.sorted, oc.icon);
+                taskList.Add(ot);
+            }
         }
+    }
+
+    public void Setup()
+    {
+        
     }
 }

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class CS_Bathing_Drying : Counter, ICounterServices
 {
     [Header("Pet Settings")]
-    [SerializeField] private PetObjectSO petObjectSO;
-    private Pet currentPet;
 
     [Header("Counter Setup")]
+    [SerializeField]private OrderTaskCategory taskCategory;
     [SerializeField]private float duration = 7;
     [SerializeField]private Transform progressBarFill;
     [SerializeField]private Transform VFX;
@@ -21,54 +21,108 @@ public class CS_Bathing_Drying : Counter, ICounterServices
 
     }
 
+    #region Interactions
+
     public override void Interact(PlayerInteraction _player)
     {
         if (!HasPetObject() && _player.HasPetObject())
         {
-            CounterSFX.PlayOneShot(SfxType.Put);
-            ActiveBubbleEffect(BubbleType.counter);
             PetRegister(_player);
         }
         
         if(HasPetObject() && canTakePet)
         {
-            CounterSFX.PlayOneShot(SfxType.Take);
-            DeactiveBubbleEffect();
             PetUnregister(_player);
         }
     }
 
     private void PetTakenFromCounter()
     {
-        if (currentPet != null)
+        if (petObject != null)
         {
-            currentPet.StopDecreaseHappiness();
-            currentPet = null;
+            petObject.StopDecreaseHappiness();
+            petObject = null;
         }
     }
+
+    public void PetRegister(PlayerInteraction _player)
+    {
+
+        CounterSFX.PlayOneShot(SfxType.Put);
+        ActiveBubbleEffect(BubbleType.objectBuble);
+
+        _player.GetPetObject().SetPetObjectParent(this);
+        canTakePet = false;
+
+        // Refusing PET
+        if (base.petObject.CheckNeedsCategory() != this.taskCategory)
+        {
+            StartCoroutine(RefusingPET(_player));
+        }
+        else
+        {
+            // Service On Progress
+            ServiceStarting();
+        }
+    }
+
+    public void PetUnregister(PlayerInteraction player)
+    {
+
+        CounterSFX.PlayOneShot(SfxType.Take);
+        DeactiveBubbleEffect();
+
+        GetPetObject().SetPetObjectParent(player);
+
+        // Reset currentPet value
+        PetTakenFromCounter();
+
+        // Clear Counter
+        SetImageProgress(0f);
+        canTakePet = false;
+    }
+
+    private IEnumerator RefusingPET(PlayerInteraction _player)
+    {
+        // Decrease Score Here !!
+        Debug.Log("This is note pet want, see the orders !!!!");
+        base.petObject.PetExpression(EPetExpression.Angry);
+        yield return new WaitForSeconds(0.5f);
+        PetUnregister(_player);
+    }
+#endregion
+
+    #region Services
 
     public void ServiceFinished()
     {
         canTakePet = true;
 
+        // Do Order Checklist Here!
+        //Debug.Log(currentPet.CheckNeedsCaategory() + " vs " + taskCategory);
+        if (petObject.CheckNeedsCategory() == this.taskCategory)
+        {
+            GameManager.instance.UpdateOrderTask(OrderTaskCategory.Drying, petObject.pet_order_index);
+        }
+
         // Do End VFX here
+        VFX.gameObject.SetActive(false);
         ActiveBubbleEffect(BubbleType.finish);
         CounterSFX.PlayOneShot(SfxType.Bubble);
-        VFX.gameObject.SetActive(false);
 
         // Restart DecreaseHappiness for the current pet if one exists.
-        if (currentPet != null)
+        if (petObject != null)
         {
-            currentPet.StartDecreaseHappiness();
+            petObject.StartDecreaseHappiness();
         }
     }
 
     public void ServiceStarting()
     {
         // Store currentPet value from GetPetObject
-        if (currentPet == null)
+        if (petObject == null)
         {
-            currentPet = GetPetObject();
+            petObject = GetPetObject();
         }
 
         // Initiate starting services
@@ -76,7 +130,7 @@ public class CS_Bathing_Drying : Counter, ICounterServices
 
         // Do Start VFX here
         VFX.gameObject.SetActive(true);
-        CounterSFX.PlaySFX();
+        CounterSFX.PlayOneShot(SfxType.Progress);
     }
 
     public IEnumerator ServiceOnProgress()
@@ -111,37 +165,5 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         this.progressBarFill.localScale = newScale;
     }
 
-    public void PetRegister(PlayerInteraction player)
-    {
-        if (!HasPetObject() && player.HasPetObject())
-        {
-            // Can put "something" to Counter
-            player.GetPetObject().SetPetObjectParent(this);
-            canTakePet = false;
-
-            // Service On Progress
-            ServiceStarting();
-        }
-        else
-        {
-            // Do Audio Effect "Cannot Put Any PET"
-            Debug.Log("Cannot Put Any PET");
-        }
-    }
-
-    public void PetUnregister(PlayerInteraction player)
-    {
-        if (HasPetObject() && !player.HasPetObject()) 
-        {
-            // Reset currentPet value
-            PetTakenFromCounter();
-
-            //DO Order Checklist Here!
-            GetPetObject().SetPetObjectParent(player);
-
-            // Clear Counter
-            SetImageProgress(0f);
-            canTakePet = false;
-        }
-    }
+    #endregion
 }

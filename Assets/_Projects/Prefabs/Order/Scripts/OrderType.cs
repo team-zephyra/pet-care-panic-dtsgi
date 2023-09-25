@@ -6,9 +6,26 @@ public enum OrderType
     Daycare
 }
 
-public enum PetType
+public enum OrderTaskCategory
 {
-    Cat,
-    Dog,
+    Bathing,
+    Next,
+    Drying,
+    NailTrimming,
+    HairCutting,
+    EarCleaning,
+    DayCareCheckin,
+    DayCareFood,
+    DayCareCheckout
+}
+
+public enum PetCategory
+{
+    Cat_Oren,
+    Cat_Calico,
+    Cat_Siamese,
+    Dog_Rottweiler,
+    Dog_Retriever,
+    Dog_Beagle,
     Bird
 }

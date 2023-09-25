@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95abb2f21164a3f44ac278cc148da7a9, type: 3}
+  m_Name: Task_DayCare_Checkin
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 7215bc08a1e39174bb9195aaff7bbc06, type: 3}
+  taskName: DayCare Checkin
+  taskType: 2
+  sorted: 1

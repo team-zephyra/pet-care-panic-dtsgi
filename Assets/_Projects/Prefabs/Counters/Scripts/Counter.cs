@@ -5,7 +5,7 @@ public class Counter : MonoBehaviour, IPetObjectParent
 {
     [SerializeField] private Transform counterSurfacePosition;
     [SerializeField] private BubbleEffect bubbleEffect;
-    private Pet petObject;
+    protected Pet petObject;
     private CounterAudio sfx;
 
     private void Awake()

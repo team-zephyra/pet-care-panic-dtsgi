@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Counter_Base : Counter
 {
-    [SerializeField] private PetObjectSO petObjectSO;
-
     public override void Interact(PlayerInteraction _player)
     {
         if (!HasPetObject())

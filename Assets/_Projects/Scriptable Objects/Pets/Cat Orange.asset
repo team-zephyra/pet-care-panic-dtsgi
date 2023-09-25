@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 295035f1692f9e140b7a6926f5abcb14, type: 3}
-  m_Name: Cat 3
+  m_Name: Cat Orange
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3367506486939014283, guid: aed21fdc5c4bc104c93588082d09da7f, type: 3}
-  objectName: Cat Siamase
+  prefab: {fileID: 7356886424230521964, guid: 50d4f4b6134abb3488b4cf1e226c6bd5, type: 3}
+  objectName: Cat Orange
+  petIcon: {fileID: 21300000, guid: 4bd7ed5b45a31f54c9782d5b4d8b4353, type: 3}
+  petCategory: 0

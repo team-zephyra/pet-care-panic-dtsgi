@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95abb2f21164a3f44ac278cc148da7a9, type: 3}
   m_Name: Task_NailTrimming
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 5a0404ca3f6385c40926ee79dbb1865c, type: 3}
+  icon: {fileID: 21300000, guid: b3048e488dac89b409b3bb94f9cd64ea, type: 3}
   taskName: Nail Trrimming
   taskType: 1
   sorted: 0

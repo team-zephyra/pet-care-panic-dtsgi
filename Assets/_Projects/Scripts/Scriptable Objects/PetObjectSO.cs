@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu()]
 public class PetObjectSO : ScriptableObject
 {
-    public Transform prefab;
+    //public Transform prefab;
+    public Pet prefab;
     public string objectName;
+    public Sprite petIcon;
+    public PetCategory petCategory;
 }

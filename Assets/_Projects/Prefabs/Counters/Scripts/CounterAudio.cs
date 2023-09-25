@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class CounterAudio : MonoBehaviour
 {
     private AudioSource audioSource;
@@ -12,13 +11,17 @@ public class CounterAudio : MonoBehaviour
     [SerializeField]private AudioClip sfxPut;
     [SerializeField]private AudioClip sfxBubble;
 
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
         if(audioSource == null)
         {
-            audioSource = GetComponent<AudioSource>();  
+            audioSource = FindObjectOfType<GameAudioFX>().AudioSource;
         }
-        audioSource.clip = sfxProgressClip; 
+        //audioSource.clip = sfxProgressClip; 
     }
 
     public void PlaySFX()

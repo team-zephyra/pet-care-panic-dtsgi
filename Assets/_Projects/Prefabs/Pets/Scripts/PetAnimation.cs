@@ -17,7 +17,7 @@ public class PetAnimation : MonoBehaviour
     void Start()
     {
         pet = GetComponent<Pet>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         isAngryHash = Animator.StringToHash("isAngry");
         isGloomyHash = Animator.StringToHash("isGloomy");

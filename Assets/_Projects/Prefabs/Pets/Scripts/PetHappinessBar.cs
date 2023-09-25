@@ -17,11 +17,7 @@ public class PetHappinessBar : MonoBehaviour
     {
         happinessBar = GetComponentInChildren<Slider>();
         mainCamera = Camera.main;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         transform.rotation = mainCamera.transform.rotation;
         transform.position = target.position + offset;
     }

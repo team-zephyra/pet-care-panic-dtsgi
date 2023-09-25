@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95abb2f21164a3f44ac278cc148da7a9, type: 3}
   m_Name: Task_EarCleaning
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 4172b827641129c4790ee9e78e46c73a, type: 3}
+  icon: {fileID: 21300000, guid: 6025004a143fbca4e9e9803e4928fc50, type: 3}
   taskName: Ear Cleaning
   taskType: 1
   sorted: 0

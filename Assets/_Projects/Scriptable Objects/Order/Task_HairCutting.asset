@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95abb2f21164a3f44ac278cc148da7a9, type: 3}
   m_Name: Task_HairCutting
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: f5aeaaee62e90524a882ddd15ea27740, type: 3}
+  icon: {fileID: 21300000, guid: 972bd8432d007af4ca6440b4964646c0, type: 3}
   taskName: Hair Cutting
   taskType: 1
   sorted: 0

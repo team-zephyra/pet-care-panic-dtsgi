@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class GameSetup
+public class GameSetup: MonoBehaviour
 {
+    [Header("Checkin Counter Register")]
+    public List<Counter_Checkin> checkinCounters;
+
     [Tooltip("Add Customer Order")]
     public SpawnSetup[] addCustomerOrder;
 }
@@ -19,6 +21,13 @@ public class SpawnSetup
     [Tooltip("Input the Order Type")]
     public OrderType orderType;
     [Tooltip("Input the Order Type")]
-    public PetType petType;
-    
+    public PetCategory petType;
+
+    // functions
+
+    public PetObjectSO GetPET()
+    {
+        return GameManager.instance.petInitiate.GetPetsByCategory(petType);
+    }
+
 }

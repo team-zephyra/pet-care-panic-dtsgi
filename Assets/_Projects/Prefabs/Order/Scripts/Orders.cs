@@ -15,24 +15,37 @@ public class Orders : MonoBehaviour
 
     private void Start()
     {
-        NewOrder(PetType.Cat, OrderType.Bathing);
-        NewOrder(PetType.Cat, OrderType.Grooming);
-        NewOrder(PetType.Cat, OrderType.Daycare);
+        //NewOrder(PetCategory.Cat_Calico, OrderType.Bathing);
+        //NewOrder(PetCategory.Cat_Oren, OrderType.Grooming);
+        //NewOrder(PetCategory.Cat_Siamese, OrderType.Grooming);
+        //NewOrder(PetCategory.Dog_Rottweiler, OrderType.Daycare);
     }
 
-    public void NewOrder(PetType _pet, OrderType _order)
+    public OrderCard NewOrder(PetCategory _pet, OrderType _order, int _orderIndex)
     {
         OrderCard oCard = Instantiate(prefCard, panelOrderParent);
 
+        // Get Pet Object from GameManager
+        PetObjectSO petObject;
+        petObject = GameManager.instance.petInitiate.GetPetsByCategory(_pet);
+
+        // Create OrderCardObject for setup Card
+        OrderCardObjectSO[] orderCards = null;
+
         switch (_order)
         {
-            case OrderType.Bathing: oCard.NewOrderCard(needsBathing); break;
-            case OrderType.Grooming: oCard.NewOrderCard(needsGrooming); break;
-            case OrderType.Daycare: oCard.NewOrderCard(needsDaycare); break;
+            case OrderType.Bathing: orderCards = needsBathing; break;
+            case OrderType.Grooming: orderCards = needsGrooming; break;
+            case OrderType.Daycare: orderCards = needsDaycare; break;
         }
 
+        oCard.SetupCard(orderCards);
+        oCard.SetIconCard(petObject.petIcon);
+        oCard.orderCardIndex = _orderIndex;
+
         oCard.gameObject.SetActive(true);
-        
+
+        return oCard;
     }
 
     public void OrderQueue()

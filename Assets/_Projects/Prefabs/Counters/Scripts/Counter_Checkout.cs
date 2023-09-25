@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Counter_Checkout : Counter
 {
-    [SerializeField] private PetObjectSO petObjectSO;
-
     public override void Interact(PlayerInteraction _player)
     {
         
@@ -36,9 +34,9 @@ public class Counter_Checkout : Counter
 
         // Do Checkout Logic
         yield return new WaitForSeconds(seconds);
-        CounterSFX.PlaySFX();
+        CounterSFX.PlayOneShot(SfxType.Progress);
 
-        
+
         yield return new WaitForSeconds(0.5f);
         GetPetObject().CheckoutPet();
     }

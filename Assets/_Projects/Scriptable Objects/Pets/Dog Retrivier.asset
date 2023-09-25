@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 295035f1692f9e140b7a6926f5abcb14, type: 3}
-  m_Name: Cat 2
+  m_Name: Dog Retrivier
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6802849150159135490, guid: 50d4f4b6134abb3488b4cf1e226c6bd5, type: 3}
-  objectName: Cat Orange
+  prefab: {fileID: 710147746598362360, guid: b305a4cd76481074d90b22cacc831919, type: 3}
+  objectName: Dog Retirever
+  petIcon: {fileID: 21300000, guid: ee0ec7c04541d35409692de24fc407f9, type: 3}
+  petCategory: 4

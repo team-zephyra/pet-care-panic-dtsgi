@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d097fcf0d0194d846abb2158cbc8a18e, type: 3}
+  m_Name: BubbleBathingOrder
+  m_EditorClassIdentifier: 
+  name: Task Bubble
+  imageSprite:
+  - {fileID: 21300000, guid: f48e3812253b46346a599dad59d775ea, type: 3}
+  - {fileID: 21300000, guid: b6faa87bad1b29d49ba578566654fee5, type: 3}
+  - {fileID: 21300000, guid: 44ac41a95535dc2479128f2cdf80ede9, type: 3}
+  - {fileID: 21300000, guid: cd0d9a14090c70544922476689e932a0, type: 3}
