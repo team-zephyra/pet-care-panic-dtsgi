@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameOver gameOverPanel;
     [SerializeField] private Scoring gameScore;
+    [SerializeField] private UICountDown uiCountDown;
     private bool IsPaused = true;
     private int indexOrder = 0;
+    private int petServicedCount = 0;
 
     [Header("Setup Pet")]
     public PetInitiate petInitiate;
@@ -24,8 +26,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]private List<Pet> petList;
     [SerializeField]private List<OrderCard> orderList;
 
-    public static GameManager instance;
+    //HideInInspector]
+    public AudioSource audioSource;
 
+    public static GameManager instance;
 
     private void Awake()
     {
@@ -43,7 +47,12 @@ public class GameManager : MonoBehaviour
             FindObjectOfType<GameSetup>();  
         }
 
-        PauseGame();
+        if (audioSource == null)
+        {
+            audioSource = FindObjectOfType<GameAudioFX>().AudioSource;
+        }
+
+        TimerPause(true);
     }
 
     private void Start()
@@ -53,7 +62,18 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameStart()
     {
-        ResumeGame();
+        // Count Down
+
+        TimerPause(true);
+
+        uiCountDown.StartCountDown();
+        yield return new WaitForSeconds(4);
+
+        TimerPause(false);
+
+        gameTimer.StartGameTimer();
+
+        // Initiate New Customer
         int idx = 0;
         int totalSpawn = gameSetup.addCustomerOrder.Length;
 
@@ -152,18 +172,34 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        IsPaused= true;
         pausePanel.SetActive(true);
-        Time.timeScale = 0;
-        gameTimer.pauseTimer = true;
+        OnGamePaused(true);
     }
 
     public void ResumeGame()
     {
-        Time.timeScale = 1;
+        OnGamePaused(false);
         pausePanel.SetActive(false);
-        IsPaused = false;
-        gameTimer.pauseTimer = false;
+    }
+
+    private void OnGamePaused(bool _pause)
+    {
+        if (_pause)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
+        TimerPause(_pause);
+    }
+
+    private void TimerPause(bool _pause)
+    {
+        IsPaused = _pause;
+        gameTimer.pauseTimer = _pause;
     }
 
     public void BackToMainMenu()
@@ -172,16 +208,69 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public void GameOver()
+    #region Game Start & Game Over
+    // Move To GameStart
+    //private IEnumerator OnGameStart()
+    //{
+    //    TimerPause(true);
+
+    //    uiCountDown.StartCountDown();
+    //    yield return new WaitForSeconds(3);
+
+    //    TimerPause(false);
+
+    //    gameTimer.StartGameTimer();
+        
+    //}
+
+    public void OnGameOver()
     {
+        OnGamePaused(true);
+        StartCoroutine(GameOver());
+    }
+
+    IEnumerator GameOver()
+    {
+        if(gameTimer.Timer > 0)
+        {
+            uiCountDown.ShowFinish();
+        }
+        else
+        {
+            uiCountDown.ShowTimesUp();
+        }
+
+        int cd = 3;
+
+        while (cd > 0)
+        {
+            yield return new WaitForSecondsRealtime(1);
+            cd--;
+        }
+
         gameOverPanel.GameOverTrigger();
     }
 
+    #endregion
+
     #region Scoring
 
-    public void UpdateScore(int _score)
+    public void CheckoutPet(int _score, int _petIndex)
     {
         gameScore.UpdateScore(_score);
+
+        
+
+        GameOverCheck();
+    }
+
+    private void GameOverCheck()
+    {
+        petServicedCount += 1;
+        if (petServicedCount == gameSetup.addCustomerOrder.Length)
+        {
+            OnGameOver();
+        }
     }
 
     #endregion

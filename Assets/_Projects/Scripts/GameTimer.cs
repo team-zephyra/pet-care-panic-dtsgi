@@ -16,16 +16,22 @@ public class GameTimer : MonoBehaviour
     [Header("UI Setting")]
     [SerializeField] private TextMeshProUGUI timerText;
 
+    public int Timer { get => timer; }
+
     private void Start()
     {
-        StartTimer(TimeOut);
         timer = durationMax;
         UpdateTimer();
     }
 
-    private void TimeOut()
+    public void StartGameTimer()
     {
-        GameManager.instance.GameOver();
+        StartTimer(TimeOut);
+    }
+
+    public void TimeOut()
+    {
+        GameManager.instance.OnGameOver();
         Debug.Log("Your timer is up.");
     }
 
@@ -65,8 +71,6 @@ public class GameTimer : MonoBehaviour
         }
         OnTimeOut?.Invoke();
     }
-
-    
 
     private void UpdateTimer()
     {

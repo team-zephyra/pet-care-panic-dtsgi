@@ -34,12 +34,17 @@ public class Counter_Checkout : Counter
 
         // Do Checkout Logic
         yield return new WaitForSeconds(seconds);
-        int score = petObject.PetScore;
-        GameManager.instance.UpdateScore(score);
-        CounterSFX.PlayOneShot(SfxType.Progress);
-
+        UpdateToGM();
 
         yield return new WaitForSeconds(0.5f);
         GetPetObject().CheckoutPet();
+    }
+
+    private void UpdateToGM()
+    {
+        int score = petObject.PetScore;
+        int index = petObject.pet_order_index;
+        GameManager.instance.CheckoutPet(score, index);
+        CounterSFX.PlayOneShot(SfxType.Progress);
     }
 }

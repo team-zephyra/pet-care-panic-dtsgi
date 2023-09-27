@@ -11,17 +11,12 @@ public class CounterAudio : MonoBehaviour
     [SerializeField]private AudioClip sfxPut;
     [SerializeField]private AudioClip sfxBubble;
 
-    private void Awake()
-    {
-    }
-
     private void Start()
     {
         if(audioSource == null)
         {
-            audioSource = FindObjectOfType<GameAudioFX>().AudioSource;
+            audioSource = GameManager.instance.audioSource;
         }
-        //audioSource.clip = sfxProgressClip; 
     }
 
     public void PlaySFX()
