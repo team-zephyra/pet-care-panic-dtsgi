@@ -3985,7 +3985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5beaa7d44b756fd4d83e5f350bc42786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
+  timer: 3
   durationMax: 90
   pauseTimer: 0
   timerText: {fileID: 8527181251156089725}

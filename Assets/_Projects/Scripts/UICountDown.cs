@@ -16,7 +16,7 @@ public class UICountDown : MonoBehaviour
     [SerializeField] private AudioClip countdownClip;
     [SerializeField] private AudioClip startClip;
 
-    private AudioSource aud;
+    [SerializeField] private AudioSource aud;
 
     private void Start()
     {
