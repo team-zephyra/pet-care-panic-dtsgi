@@ -193,6 +193,7 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   gameOverPanel: {fileID: 0}
   gameScore: {fileID: 0}
+  uiCountDown: {fileID: 0}
   petInitiate:
     pets:
     - {fileID: 11400000, guid: 47f7b1a3aa6427d4896cd06b4c9412a0, type: 2}
@@ -204,6 +205,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 13f765c136f48004cb03ba195d01a8ab, type: 2}
   petList: []
   orderList: []
+  audioSource: {fileID: 0}
 --- !u!1001 &3141083195238241766
 PrefabInstance:
   m_ObjectHideFlags: 0

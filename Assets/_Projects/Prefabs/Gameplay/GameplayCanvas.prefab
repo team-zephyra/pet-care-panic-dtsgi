@@ -3986,7 +3986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  durationMax: 300
+  durationMax: 90
   pauseTimer: 0
   timerText: {fileID: 8527181251156089725}
 --- !u!1 &8527181251672813604

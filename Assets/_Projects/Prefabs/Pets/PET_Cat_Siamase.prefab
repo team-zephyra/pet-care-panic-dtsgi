@@ -35,6 +35,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5748166734633720937, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b53dd4c9941fc02489d065ad515cada0, type: 2}
     - target: {fileID: 5786499127040594711, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: petTextureColor
       value: 

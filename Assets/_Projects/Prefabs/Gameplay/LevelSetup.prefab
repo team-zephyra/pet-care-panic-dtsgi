@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8525672371071367649}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -58,17 +58,33 @@ MonoBehaviour:
     orderType: 0
     petType: 1
   - _index: 2
-    timeToSpawn: 5
+    timeToSpawn: 3
     orderType: 0
     petType: 0
   - _index: 3
-    timeToSpawn: 10
+    timeToSpawn: 12
     orderType: 0
     petType: 2
   - _index: 4
-    timeToSpawn: 10
+    timeToSpawn: 2
+    orderType: 0
+    petType: 0
+  - _index: 5
+    timeToSpawn: 3
+    orderType: 0
+    petType: 1
+  - _index: 6
+    timeToSpawn: 12
     orderType: 0
     petType: 2
+  - _index: 7
+    timeToSpawn: 2
+    orderType: 0
+    petType: 1
+  - _index: 8
+    timeToSpawn: 3
+    orderType: 0
+    petType: 0
 --- !u!114 &8525672371071367678
 MonoBehaviour:
   m_ObjectHideFlags: 0
