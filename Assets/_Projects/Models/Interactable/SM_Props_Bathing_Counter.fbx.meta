@@ -12,7 +12,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Glass.003
+    second: {fileID: 2100000, guid: 900065b53d116c24d8d4600949b2174b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Props_Texture_Pack
+    second: {fileID: 2100000, guid: 7a4aabbe2639e1548b577219675f1647, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Props_Texture_Pack.004
     second: {fileID: 2100000, guid: 7a4aabbe2639e1548b577219675f1647, type: 2}
   materials:
     materialImportMode: 2

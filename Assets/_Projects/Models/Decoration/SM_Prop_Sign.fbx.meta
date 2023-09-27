@@ -14,6 +14,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: M_Prop_Texture Properties.005
     second: {fileID: 2100000, guid: bdfbc02b96b173544b87592003b79357, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_PropsDecor_TexturePack
+    second: {fileID: 2100000, guid: 51d6fd1081656d2468d707c5563526ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Props_DecorArt
+    second: {fileID: 2100000, guid: 9b50f2c53c3251847b12611a4b588c59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Props_Shadow
+    second: {fileID: 2100000, guid: 37cc8383e0282e44294b81e45f5ef869, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
