@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
-    public int timer = 0;
+    [SerializeField]private int timer = 3;
     public int durationMax = 120;
-    public bool pauseTimer = false;
+    [HideInInspector]public bool pauseTimer = false;
 
     private IEnumerator _timerCoroutine;
     public Action OnTimeOut;
@@ -19,6 +19,8 @@ public class GameTimer : MonoBehaviour
     private void Start()
     {
         StartTimer(TimeOut);
+        timer = durationMax;
+        UpdateTimer();
     }
 
     private void TimeOut()
@@ -46,7 +48,7 @@ public class GameTimer : MonoBehaviour
 
     private IEnumerator TimeCounter()
     {
-        while (timer < durationMax)
+        while (timer > 0)
         {
             if (pauseTimer)
             {
@@ -57,7 +59,7 @@ public class GameTimer : MonoBehaviour
 
             //waiting 1 second in real time and increasing the timer value
             yield return new WaitForSecondsRealtime(1);
-            timer++;
+            timer--;
             UpdateTimer();
            
         }
