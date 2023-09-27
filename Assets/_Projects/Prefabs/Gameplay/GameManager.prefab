@@ -172,6 +172,7 @@ Transform:
   m_Children:
   - {fileID: 7506592581286487202}
   - {fileID: 3141083194899131958}
+  - {fileID: 2427263878455974224}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSetup: {fileID: 0}
-  order: {fileID: 0}
+  order: {fileID: 8835227591576110293}
   gameTimer: {fileID: 0}
   pausePanel: {fileID: 0}
   gameOverPanel: {fileID: 0}
@@ -206,6 +207,64 @@ MonoBehaviour:
   petList: []
   orderList: []
   audioSource: {fileID: 0}
+--- !u!1 &8270121975705633530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2427263878455974224}
+  - component: {fileID: 8835227591576110293}
+  m_Layer: 0
+  m_Name: OrderManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2427263878455974224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270121975705633530}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3141083195147116339}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8835227591576110293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8270121975705633530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf27d972d0db774f940ded63c6399ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelOrderParent: {fileID: 0}
+  prefCard: {fileID: 6188637024470608222, guid: 5a64e23ec5417224dbc85301bf05621b, type: 3}
+  needsBathing:
+  - {fileID: 11400000, guid: aaa8e053596ccc94fb56c4513dbe0daa, type: 2}
+  - {fileID: 11400000, guid: a2bcf79b044c5cc41a2a5e3148eeccbb, type: 2}
+  - {fileID: 11400000, guid: cdec784737ad3a44b97f64f0d49aafc0, type: 2}
+  needsGrooming:
+  - {fileID: 11400000, guid: 4efa8476c632e1e4da54e7c7032e091d, type: 2}
+  - {fileID: 11400000, guid: 270e8effcc88bda4dbae72499bbd9424, type: 2}
+  - {fileID: 11400000, guid: 38ff9f03368399e48aa632a49b29dc70, type: 2}
+  needsDaycare:
+  - {fileID: 11400000, guid: 4196a05b64814174eb433660abd025f8, type: 2}
+  - {fileID: 11400000, guid: 26d5648248a0ce346b01ac60af3a4d3a, type: 2}
+  - {fileID: 11400000, guid: 68cf086d5deff144d9614c3cd7f257c2, type: 2}
 --- !u!1001 &3141083195238241766
 PrefabInstance:
   m_ObjectHideFlags: 0

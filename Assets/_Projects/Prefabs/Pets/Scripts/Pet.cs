@@ -237,7 +237,7 @@ public class Pet : MonoBehaviour
     public void CheckoutPet()
     {
         petObjectParent.ClearPetObject();
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     #endregion

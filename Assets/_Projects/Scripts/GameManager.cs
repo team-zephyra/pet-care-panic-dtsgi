@@ -86,8 +86,14 @@ public class GameManager : MonoBehaviour
                 continue;
             }
 
-            //waiting 1 second in real time and increasing the timer value
-            yield return new WaitForSecondsRealtime(gameSetup.addCustomerOrder[idx].timeToSpawn);
+            if (!gameSetup.IsCounterFree())
+            {
+                yield return new WaitForEndOfFrame();
+                continue;
+            }
+
+            yield return new WaitForSeconds(gameSetup.addCustomerOrder[idx].timeToSpawn);
+
             if (!SpawnNewOrder())
             {
                 if (!SpawnNewOrder())
@@ -95,12 +101,15 @@ public class GameManager : MonoBehaviour
                     yield return new WaitForSeconds(1);
                     SpawnNewOrder();
                     idx++;
+                    Debug.Log("from Spawn Order 2");
                     continue;
                 }
+                    Debug.Log("from Spawn Order 1");
             }
             else
             {
                 idx++;
+                Debug.Log("from else");
             }
 
         } while (idx < totalSpawn);
@@ -134,11 +143,11 @@ public class GameManager : MonoBehaviour
                 petList.Add(p);
 
                 indexOrder++;
+
                 return true;
             }
             ++i;
         } while (i < gameSetup.checkinCounters.Count);
-
         return false;
     }
 
@@ -202,26 +211,9 @@ public class GameManager : MonoBehaviour
         gameTimer.pauseTimer = _pause;
     }
 
-    public void BackToMainMenu()
-    {
-        SceneManager.LoadScene("L_MainMenu");
-    }
     #endregion
 
-    #region Game Start & Game Over
-    // Move To GameStart
-    //private IEnumerator OnGameStart()
-    //{
-    //    TimerPause(true);
-
-    //    uiCountDown.StartCountDown();
-    //    yield return new WaitForSeconds(3);
-
-    //    TimerPause(false);
-
-    //    gameTimer.StartGameTimer();
-        
-    //}
+    #region Game Over
 
     public void OnGameOver()
     {
@@ -251,16 +243,40 @@ public class GameManager : MonoBehaviour
         gameOverPanel.GameOverTrigger();
     }
 
+
+
     #endregion
 
     #region Scoring
 
+    public int GetGameScore()
+    {
+        return gameScore.Score;
+    }
+
     public void CheckoutPet(int _score, int _petIndex)
     {
+        foreach(Pet p in petList)
+        {
+            int petIndex = p.pet_order_index;
+            if(petIndex == _petIndex)
+            {
+                Pet _petToRemove = p;
+                //petList.Remove(_petToRemove);
+                Destroy(_petToRemove.gameObject);
+            }
+        }
+
+        foreach(OrderCard card in orderList)
+        {
+            if(card.orderCardIndex== _petIndex)
+            {
+                //orderList.Remove(card);
+                Destroy(card.gameObject);
+            }
+        }
+
         gameScore.UpdateScore(_score);
-
-        
-
         GameOverCheck();
     }
 
@@ -271,6 +287,25 @@ public class GameManager : MonoBehaviour
         {
             OnGameOver();
         }
+    }
+
+    public void SetMinimumScore(int _score1, int _score2, int _score3)
+    {
+        gameOverPanel.SetMinimumScore(_score1, _score2, _score3);
+    }
+
+    #endregion
+
+    #region SceneManagement
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("L_MainMenu");
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     #endregion

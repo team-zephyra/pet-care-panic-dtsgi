@@ -9,6 +9,9 @@ public class Scoring : MonoBehaviour
 
     [Header("UI Update")]
     [SerializeField] private TextMeshProUGUI textScore;
+
+    public int Score { get => score;}
+
     public void UpdateScore(int _scoreAdd)
     {
         score += _scoreAdd;

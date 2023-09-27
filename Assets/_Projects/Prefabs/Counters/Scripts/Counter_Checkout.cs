@@ -27,7 +27,7 @@ public class Counter_Checkout : Counter
     public IEnumerator CheckoutPet()
     {
         // This seconds should be a little bit higher than Pet Happy animation
-        float seconds = 1.5f;
+        float seconds = 0.3f;
 
         // Trigger Happy Animation
         GetPetObject().GetComponent<PetAnimation>().TriggerHappyAnimation();
