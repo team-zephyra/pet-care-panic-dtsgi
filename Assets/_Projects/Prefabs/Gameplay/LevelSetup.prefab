@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8525672371071367649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8525672371071367648}
+  - component: {fileID: 8525672371071367679}
+  - component: {fileID: 8525672371071367678}
+  m_Layer: 0
+  m_Name: LevelSetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8525672371071367648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525672371071367649}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8525672371071367679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525672371071367649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f9440d6a0015643aafd0de36eba319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkinCounters:
+  - {fileID: 0}
+  - {fileID: 0}
+  addCustomerOrder:
+  - _index: 0
+    timeToSpawn: 0
+    orderType: 0
+    petType: 2
+  - _index: 1
+    timeToSpawn: 2
+    orderType: 0
+    petType: 1
+  - _index: 2
+    timeToSpawn: 5
+    orderType: 0
+    petType: 0
+  - _index: 3
+    timeToSpawn: 10
+    orderType: 0
+    petType: 2
+  - _index: 4
+    timeToSpawn: 10
+    orderType: 0
+    petType: 2
+--- !u!114 &8525672371071367678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525672371071367649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf27d972d0db774f940ded63c6399ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelOrderParent: {fileID: 0}
+  prefCard: {fileID: 6188637024470608222, guid: 5a64e23ec5417224dbc85301bf05621b, type: 3}
+  needsBathing:
+  - {fileID: 11400000, guid: aaa8e053596ccc94fb56c4513dbe0daa, type: 2}
+  - {fileID: 11400000, guid: a2bcf79b044c5cc41a2a5e3148eeccbb, type: 2}
+  - {fileID: 11400000, guid: cdec784737ad3a44b97f64f0d49aafc0, type: 2}
+  needsGrooming:
+  - {fileID: 11400000, guid: 4efa8476c632e1e4da54e7c7032e091d, type: 2}
+  - {fileID: 11400000, guid: 270e8effcc88bda4dbae72499bbd9424, type: 2}
+  - {fileID: 11400000, guid: 38ff9f03368399e48aa632a49b29dc70, type: 2}
+  needsDaycare:
+  - {fileID: 11400000, guid: 4196a05b64814174eb433660abd025f8, type: 2}
+  - {fileID: 11400000, guid: 26d5648248a0ce346b01ac60af3a4d3a, type: 2}
+  - {fileID: 11400000, guid: 68cf086d5deff144d9614c3cd7f257c2, type: 2}
