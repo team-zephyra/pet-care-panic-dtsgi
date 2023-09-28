@@ -1,17 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelTutorial : MonoBehaviour
 {
 
-    private void Awake()
+    public Button confirmButton;
+    private InputManager inputManager;
+    private PlayerInput playerInput;
+
+    private void Start()
     {
-        Time.timeScale = 0f;
+        inputManager = FindObjectOfType<InputManager>();
+        playerInput = inputManager.GetPlayerInput();
     }
 
-    public void ResetTimeScale(float timeScale)
+    private void Update()
     {
-        Time.timeScale = timeScale;
+        if (playerInput.Gameplay.Confirm.triggered)
+        {
+            if (confirmButton != null)
+            {
+                confirmButton.onClick.Invoke();
+            }
+            else
+            {
+                Debug.LogWarning("ConfirmButton has not been assigned.");
+            }
+        }
     }
+
 }
