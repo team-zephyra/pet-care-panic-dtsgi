@@ -77,4 +77,13 @@ public class GameTimer : MonoBehaviour
         string minSec = string.Format("{0}:{1:00}", timer/60, timer%60);
         timerText.text = minSec;
     }
+
+    #region Game Manager
+
+    public void PauseGame()
+    {
+        GameManager.instance.PauseGame();
+    }
+
+    #endregion
 }
