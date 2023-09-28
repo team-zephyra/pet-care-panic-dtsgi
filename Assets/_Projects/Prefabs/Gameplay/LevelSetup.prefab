@@ -84,6 +84,6 @@ MonoBehaviour:
     timeToSpawn: 3
     orderType: 0
     petType: 0
-  MinimumScoreStar1: 700
-  MinimumScoreStar2: 1000
-  MinimumScoreStar3: 1300
+  MinimumScoreStar1: 1000
+  MinimumScoreStar2: 1300
+  MinimumScoreStar3: 1500
