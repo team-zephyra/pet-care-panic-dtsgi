@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Props_Shadow
+    second: {fileID: 2100000, guid: 37cc8383e0282e44294b81e45f5ef869, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Props_Texture_Pack
     second: {fileID: 2100000, guid: 7a4aabbe2639e1548b577219675f1647, type: 2}
   - first:

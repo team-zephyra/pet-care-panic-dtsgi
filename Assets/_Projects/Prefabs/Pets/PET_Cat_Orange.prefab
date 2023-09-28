@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f6295ebae51677b4282653b091400585, type: 2}
+    - target: {fileID: 4633067857183978122, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5082024370897306966, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: m_Name
       value: PET_Cat_Orange
@@ -23,10 +27,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5748166734633720937, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5786499127040594711, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: petTextureColor
       value: 
       objectReference: {fileID: 2800000, guid: 3637e32e6e890ba4db07e64c4c26e77e, type: 3}
+    - target: {fileID: 7165457874163027236, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8819878831753906150, guid: e66e3d1ee8b24574998a23a0e704a4e3, type: 3}
       propertyPath: m_RootOrder
       value: 0
