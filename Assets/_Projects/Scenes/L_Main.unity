@@ -909,6 +909,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2238276710081094773, guid: bd374648d74cbc04daee7efa9e064c2c, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4707224873086218084, guid: b095ab70a8bef9f48b251627d4712f91, type: 2}
+    - target: {fileID: 8527181250103287614, guid: bd374648d74cbc04daee7efa9e064c2c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8527181250103287615, guid: bd374648d74cbc04daee7efa9e064c2c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
