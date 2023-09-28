@@ -44,6 +44,12 @@ public class Counter_Checkout : Counter
     {
         int score = petObject.PetScore;
         int index = petObject.pet_order_index;
+
+        if(score < 0)
+        {
+            score = 0;
+        }
+
         GameManager.instance.CheckoutPet(score, index);
         CounterSFX.PlayOneShot(SfxType.Progress);
     }
