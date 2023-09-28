@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class UIMainMenu : MonoBehaviour
 {
@@ -23,6 +22,11 @@ public class UIMainMenu : MonoBehaviour
     public GameObject[] mainMenuButtons;
     public GameObject exitButton;
     public float mainMenuButtonAnimationTime = 1f;
+
+    [Header("Settings Page Settings")]
+    public GameObject settingsPage;
+    public float settingsPageAnimationTime = 1f;
+    private bool _isOnSettingsPage;
 
     [Header("Credits Page Settings")]
     public GameObject creditsPage;
@@ -62,15 +66,43 @@ public class UIMainMenu : MonoBehaviour
             CreateClickEffect();
         }
 
+        if (_isOnSettingsPage && playerInput.UI.Back.triggered)
+        {
+            CloseSettingsPage();
+            CreateClickEffect();
+        }
+
         if (_isOnCreditsPage && playerInput.UI.Back.triggered)
         {
             CloseCreditsPage();
+            CreateClickEffect();
         }
 
         if (_isExitPopupActive && playerInput.UI.Back.triggered)
         {
             CancelExitButton();
+            CreateClickEffect();
         }
+    }
+
+    #region Main Menu
+    public void OpenSettingsPage()
+    {
+        settingsPage.SetActive(true);
+
+        LeanTween.scale(settingsPage, Vector3.one, settingsPageAnimationTime)
+            .setEaseOutBounce();
+
+        _isOnSettingsPage = true;
+    }
+
+    public void CloseSettingsPage()
+    {
+        LeanTween.scale(settingsPage, Vector3.zero, settingsPageAnimationTime)
+            .setEaseInBack()
+            .setOnComplete(DisableSettingsPage);
+
+        _isOnSettingsPage = false;
     }
 
     public void OpenExitPopup()
@@ -208,4 +240,11 @@ public class UIMainMenu : MonoBehaviour
     {
         exitPopup.SetActive(false);
     }
+
+    private void DisableSettingsPage()
+    {
+        settingsPage.SetActive(false);
+    }
+
+    #endregion
 }

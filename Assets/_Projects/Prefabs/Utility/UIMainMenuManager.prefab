@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5841109455579923994
+--- !u!1 &3543691736921378236
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5841109455579923992}
-  - component: {fileID: 5841109455579923993}
+  - component: {fileID: 3543691736921378238}
+  - component: {fileID: 3543691736921378239}
   m_Layer: 0
-  m_Name: UI Main Menu Manager
+  m_Name: UIMainMenuManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5841109455579923992
+--- !u!224 &3543691736921378238
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5841109455579923994}
+  m_GameObject: {fileID: 3543691736921378236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,13 +37,13 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5841109455579923993
+--- !u!114 &3543691736921378239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5841109455579923994}
+  m_GameObject: {fileID: 3543691736921378236}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6440f90d8750ad84da04fe04a55c8f1b, type: 3}
@@ -64,6 +64,8 @@ MonoBehaviour:
   - {fileID: 0}
   exitButton: {fileID: 0}
   mainMenuButtonAnimationTime: 1
+  settingsPage: {fileID: 0}
+  settingsPageAnimationTime: 1
   creditsPage: {fileID: 0}
   creditsPageAnimationTime: 0.5
   exitPopup: {fileID: 0}
