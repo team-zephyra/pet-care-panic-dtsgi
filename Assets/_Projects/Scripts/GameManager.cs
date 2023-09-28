@@ -311,6 +311,7 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
     }
 
     #endregion
