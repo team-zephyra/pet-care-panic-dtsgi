@@ -72,7 +72,8 @@ public class CS_Bathing_Bath : Counter, ICounterServices
     {
         CounterSFX.PlayOneShot(SfxType.Take);
         DeactiveBubbleEffect();
- 
+
+        currentPet.IsOnServices = false;
         GetPetObject().SetPetObjectParent(player);
 
         // Reset currentPet value
@@ -92,7 +93,7 @@ public class CS_Bathing_Bath : Counter, ICounterServices
 
         // Do Order Checklist Here!
         //Debug.Log(petObject.CheckNeedsCaategory() + " vs " + taskCategory);
-        if(currentPet.CheckNeedsCategory() == this.taskCategory)
+        if (currentPet.CheckNeedsCategory() == this.taskCategory)
         {
             // Scoring Here
             GameManager.instance.UpdateOrderTask(OrderTaskCategory.Bathing, currentPet.pet_order_index);
@@ -125,13 +126,13 @@ public class CS_Bathing_Bath : Counter, ICounterServices
         // Do Start VFX here
         CounterSFX.PlayOneShot(SfxType.Progress);
         VFX.gameObject.SetActive(true);
+
+        currentPet.IsOnServices = true;
     }
 
     public IEnumerator ServiceOnProgress()
     {
-        // Playing Pet Animations
-
-
+        
 
         // Do Services Logic
         float normalizeTime = 0;

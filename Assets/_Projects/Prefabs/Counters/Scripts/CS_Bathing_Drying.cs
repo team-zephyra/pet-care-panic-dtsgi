@@ -75,6 +75,7 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         CounterSFX.PlayOneShot(SfxType.Take);
         DeactiveBubbleEffect();
 
+        currentPet.IsOnServices = false;
         GetPetObject().SetPetObjectParent(player);
 
         // Reset currentPet value
@@ -135,6 +136,8 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         // Do Start VFX here
         VFX.gameObject.SetActive(true);
         CounterSFX.PlayOneShot(SfxType.Progress);
+
+        currentPet.IsOnServices = true;
     }
 
     public IEnumerator ServiceOnProgress()

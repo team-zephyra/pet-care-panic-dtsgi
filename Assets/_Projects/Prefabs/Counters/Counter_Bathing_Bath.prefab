@@ -849,6 +849,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 7221135420435200457}
     m_Modifications:
     - target: {fileID: 1009391749877489425, guid: 3c8f74d1685a500408fbdb7fe3d1084d, type: 3}
+      propertyPath: finishedImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 44ac41a95535dc2479128f2cdf80ede9, type: 3}
+    - target: {fileID: 1009391749877489425, guid: 3c8f74d1685a500408fbdb7fe3d1084d, type: 3}
       propertyPath: objectBubleImage
       value: 
       objectReference: {fileID: 21300000, guid: f48e3812253b46346a599dad59d775ea, type: 3}

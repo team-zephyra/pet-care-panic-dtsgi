@@ -19,6 +19,7 @@ public class Pet : MonoBehaviour
     [Header("Pet Dep Counters")]
     private IPetObjectParent petObjectParent;
     public bool isOnCheckInCounter;
+    private bool isOnServices;
 
     /* Pet Order */
     [Header("Pet Order")]
@@ -77,10 +78,13 @@ public class Pet : MonoBehaviour
 
     private IEnumerator ShowBubble(Sprite _image)
     {
-        currentBubbleEffect.SetBubbleImage(_image);
-        currentBubbleEffect.Enable(BubbleType.objectBuble);
-        yield return new WaitForSeconds(2f);
-        currentBubbleEffect.Disable();
+        if (!isOnServices)
+        {
+            currentBubbleEffect.SetBubbleImage(_image);
+            currentBubbleEffect.Enable(BubbleType.objectBuble);
+            yield return new WaitForSeconds(2f);
+            currentBubbleEffect.Disable();
+        }
     }
 
     public void UpdateTaskComplete(OrderTaskCategory _cat)
@@ -180,7 +184,10 @@ public class Pet : MonoBehaviour
                 happinessBar.UpdateHappinessBar(currentHappiness, maxHappiness);
             }
 
-            StartCoroutine(ShowBubble(currentBubbleSO.imageSprite[taskCompleted]));
+            if (!isOnServices)
+            {
+                StartCoroutine(ShowBubble(currentBubbleSO.imageSprite[taskCompleted]));
+            }
         }
 
     }
@@ -260,6 +267,15 @@ public class Pet : MonoBehaviour
     }
 
     public int PetScore { get => petScore; }
+
+
+    #endregion
+
+    #region On Services
+
+    public bool IsOnServices { get => isOnServices; set => isOnServices = value; }
+
+
 
     #endregion
 }
