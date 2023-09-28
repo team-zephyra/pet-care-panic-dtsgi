@@ -2947,17 +2947,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322166800}
-  m_LocalRotation: {x: -0, y: -0, z: 0.029163502, w: 0.99957466}
+  m_LocalRotation: {x: 0, y: 0, z: 0.043619405, w: 0.9990483}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1342506098}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.342}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: -197}
+  m_AnchoredPosition: {x: 14, y: -148}
   m_SizeDelta: {x: 855.749, y: 351.76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322166802
@@ -2980,9 +2980,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Andika Pratama Wijaya\t\t\t3D Artist\nAnnisa Nur Ramadani\t\t\t\t3D Artist\nGagan
-    Sukmawan\t\t\t\tProgrammer\nRizaldy Saputra Dharma Winata\t\tProgrammer\nTeuku
-    Khairul Umam\t\t\t\t3D Artist"
+  m_text: "Andika Pratama Wijaya\t\t\t\t3D Artist\nAnnisa Nur Ramadani\t\t\t\t\t3D
+    Artist\nGagan Sukmawan\t\t\t\t\tProgrammer\nRizaldy Saputra Dharma Winata\t\tProgrammer\nTeuku
+    Khairul Umam\t\t\t\t\t3D Artist\n\nSpecial Thanks for BGM Creators:\n- sugar
+    popcorn by Hiiragi Hanon\n- Kitten by\_FUJINEQo\_Music"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a89f254917c65749940261cc3106796, type: 2}
   m_sharedMaterial: {fileID: -5942045868843588275, guid: 1a89f254917c65749940261cc3106796, type: 2}
@@ -3009,8 +3010,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3088,7 +3089,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1322166801}
   - {fileID: 2138190998}

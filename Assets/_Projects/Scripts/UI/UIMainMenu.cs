@@ -49,6 +49,11 @@ public class UIMainMenu : MonoBehaviour
     private int defaultPage;
     public GameObject clickEffect;
 
+    void Awake()
+    {
+        // Reset Time.timeScale, in case other class set it to 0
+        ResetTimeScale();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -244,6 +249,14 @@ public class UIMainMenu : MonoBehaviour
     private void DisableSettingsPage()
     {
         settingsPage.SetActive(false);
+    }
+
+    private void ResetTimeScale()
+    {
+        if (Time.timeScale != 1f)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     #endregion

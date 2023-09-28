@@ -17,6 +17,7 @@ public class UICountDown : MonoBehaviour
     [SerializeField] private AudioClip startClip;
 
     [SerializeField] private AudioSource aud;
+    [SerializeField] private AudioSource inGameMusic;
 
     private void Start()
     {
@@ -52,6 +53,7 @@ public class UICountDown : MonoBehaviour
     {
         UpdateTextNotif(0);
         StartCoroutine(ShowImage(ImgTextNotif, 1));
+        StartInGameMusic();
     }
 
     public void ShowTimesUp()
@@ -98,5 +100,13 @@ public class UICountDown : MonoBehaviour
         panelBlocker.gameObject.SetActive(false);
 
         _image.enabled = false;
+    }
+
+    private void StartInGameMusic()
+    {
+        if (!inGameMusic.isPlaying)
+        {
+            inGameMusic.Play();
+        }
     }
 }

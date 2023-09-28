@@ -57,6 +57,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        
+    }
+
+    public void StartGame()
+    {
         StartCoroutine(GameStart());
     }
 
