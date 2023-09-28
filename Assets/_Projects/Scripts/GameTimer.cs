@@ -85,5 +85,15 @@ public class GameTimer : MonoBehaviour
         GameManager.instance.PauseGame();
     }
 
+    public void ResumeGame()
+    {
+        GameManager.instance.ResumeGame();
+    }
+
+    public void QuitGame()
+    {
+        GameManager.instance.BackToMainMenu();
+    }
+
     #endregion
 }
