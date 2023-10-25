@@ -3,7 +3,8 @@ public enum OrderType
 {
     Bathing,
     Grooming,
-    Daycare
+    Daycare,
+    None
 }
 
 public enum OrderTaskCategory
@@ -16,7 +17,9 @@ public enum OrderTaskCategory
     EarCleaning,
     DayCareCheckin,
     DayCareFood,
-    DayCareCheckout
+    DayCareCheckout,
+    None,
+    Checkout
 }
 
 public enum PetCategory

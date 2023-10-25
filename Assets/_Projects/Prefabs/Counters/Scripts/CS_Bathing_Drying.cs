@@ -6,107 +6,19 @@ using UnityEngine.UI;
 
 public class CS_Bathing_Drying : Counter, ICounterServices
 {
-    [Header("Pet Settings")]
-
-    [Header("Counter Setup")]
-    [SerializeField] private OrderType orderType;
-    [SerializeField]private OrderTaskCategory taskCategory;
-    [SerializeField]private float duration = 7;
-    [SerializeField]private Transform progressBarFill;
-    [SerializeField]private Transform VFX;
-    private bool canTakePet = true;
-
-    private Pet currentPet;
-
-    private void Start()
-    {
-
-    }
-
-    #region Interactions
-
-    public override void Interact(PlayerInteraction _player)
-    {
-        if (!HasPetObject() && _player.HasPetObject())
-        {
-            PetRegister(_player);
-        }
-        
-        if(HasPetObject() && canTakePet)
-        {
-            PetUnregister(_player);
-        }
-    }
-
-    private void PetTakenFromCounter()
-    {
-        if (currentPet != null)
-        {
-            currentPet.StopDecreaseHappiness();
-            currentPet = null;
-        }
-    }
-
-    public void PetRegister(PlayerInteraction _player)
-    {
-
-        CounterSFX.PlayOneShot(SfxType.Put);
-        ActiveBubbleEffect(BubbleType.objectBuble);
-
-        _player.GetPetObject().SetPetObjectParent(this);
-        canTakePet = false;
-
-        // Refusing PET
-        if (base.petObject.CheckNeedsCategory() != this.taskCategory)
-        {
-            StartCoroutine(RefusingPET(_player));
-        }
-        else
-        {
-            // Service On Progress
-            ServiceStarting();
-        }
-    }
-
-    public void PetUnregister(PlayerInteraction player)
-    {
-
-        CounterSFX.PlayOneShot(SfxType.Take);
-        DeactiveBubbleEffect();
-
-        currentPet.IsOnServices = false;
-        GetPetObject().SetPetObjectParent(player);
-
-        // Reset currentPet value
-        PetTakenFromCounter();
-
-        // Clear Counter
-        SetImageProgress(0f);
-        canTakePet = false;
-    }
-
-    private IEnumerator RefusingPET(PlayerInteraction _player)
-    {
-        // Decrease Score Here !!
-        Debug.Log("This is note pet want, see the orders !!!!");
-        base.petObject.PetExpression(EPetExpression.Angry);
-        yield return new WaitForSeconds(0.5f);
-        PetUnregister(_player);
-    }
-#endregion
 
     #region Services
 
-    public void ServiceFinished()
+    public override void ServiceFinished()
     {
         canTakePet = true;
 
         // Do Order Checklist Here!
         //Debug.Log(currentPet.CheckNeedsCaategory() + " vs " + taskCategory);
-        if (currentPet.CheckNeedsCategory() == this.taskCategory)
+        if (petObject.CheckNeedsCategory() == this.taskCategory)
         {
-            GameManager.instance.UpdateOrderTask(OrderTaskCategory.Drying, currentPet.pet_order_index);
-            currentPet.UpdateScore(orderType);
+            GameManager.instance.UpdateOrderTask(OrderTaskCategory.Drying, petObject.pet_order_index);
+            petObject.UpdateScore(orderType);
         }
 
         // Do End VFX here
@@ -115,18 +27,18 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         CounterSFX.PlayOneShot(SfxType.Bubble);
 
         // Restart DecreaseHappiness for the current pet if one exists.
-        if (currentPet != null)
+        if (petObject != null)
         {
-            currentPet.StartDecreaseHappiness();
+            petObject.StartDecreaseHappiness();
         }
     }
 
-    public void ServiceStarting()
+    public override void ServiceStarting()
     {
         // Store currentPet value from GetPetObject
-        if (currentPet == null)
+        if (petObject == null)
         {
-            currentPet = GetPetObject();
+            petObject = GetPetObject();
         }
 
         // Initiate starting services
@@ -136,7 +48,7 @@ public class CS_Bathing_Drying : Counter, ICounterServices
         VFX.gameObject.SetActive(true);
         CounterSFX.PlayOneShot(SfxType.Progress);
 
-        currentPet.IsOnServices = true;
+        petObject.IsOnServices = true;
     }
 
     public IEnumerator ServiceOnProgress()

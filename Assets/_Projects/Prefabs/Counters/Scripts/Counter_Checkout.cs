@@ -4,24 +4,11 @@ using UnityEngine;
 
 public class Counter_Checkout : Counter
 {
-    public override void Interact(PlayerInteraction _player)
+
+    public override void ServiceStarting()
     {
-        
-        if (!HasPetObject() && _player.HasPetObject())
-        {
-            // Can put "something" to Counter
-            _player.GetPetObject().SetPetObjectParent(this);
-
-            CounterSFX.PlayOneShot(SfxType.Put);
-
-            // Checkout Pet and completing order
-            StartCoroutine(CheckoutPet());
-        }
-        else
-        {
-            // Do Audio Effect "Cannot Checkout"
-            Debug.Log("Cannot Checkout");
-        }
+        // Initiate starting services
+        StartCoroutine(CheckoutPet());
     }
 
     public IEnumerator CheckoutPet()

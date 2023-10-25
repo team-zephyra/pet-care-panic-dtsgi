@@ -116,7 +116,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counterSurfacePosition: {fileID: 7424214341458460646}
   bubbleEffect: {fileID: 0}
-  petObjectSO: {fileID: 0}
+  canTakePet: 1
+  canPutPet: 0
+  orderType: 3
+  taskCategory: 9
+  duration: 7
+  progressBarFill: {fileID: 0}
+  VFX: {fileID: 0}
 --- !u!114 &335443540123059853
 MonoBehaviour:
   m_ObjectHideFlags: 0
